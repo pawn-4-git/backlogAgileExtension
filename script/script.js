@@ -3,6 +3,8 @@ const url   = location.href;
 const safetyLevel = "lightblue";
 const warningLevel = "khaki";
 const dangerLevel = "lightcoral";
+const overLimitDate = "5px solid red";
+const nearLimitDate = "5px solid yellow";
 
 function estimatedExtractNumberInParentheses(str) {
   const regex = /\(([\d.]+)\)/;
@@ -66,6 +68,29 @@ if(url.indexOf('backlog.jp/board/')!=-1){
                 }
               }else{
                 cardElements.parentNode.style.backgroundColor = safetyLevel;
+              }
+            }
+            let limitDate=cardElements.parentNode.querySelectorAll('input[aria-label]');
+            if(limitDate.length>0){
+              let limitDateValue = limitDate[0].value;
+              if(limitDateValue.match(/^\d{4}\/\d{2}\/\d{2}$/)){
+                let limitDateValueDate = new Date(limitDateValue);
+                limitDateValueDate.setHours(23);
+                limitDateValueDate.setMinutes(59);
+                let nowDate = new Date();
+                let diffDate = limitDateValueDate - nowDate;
+                if(diffDate<0){
+                  cardElements.parentNode.style.border = overLimitDate;
+                }else{
+                  let nearLimitDateValue = new Date(limitDateValue);
+                  nearLimitDateValue.setHours(23);
+                  nearLimitDateValue.setMinutes(59);
+                  nearLimitDateValue.setDate(nearLimitDateValue.getDate()-1);
+                  diffDate = nearLimitDateValue - nowDate;
+                  if(diffDate<0){
+                    cardElements.parentNode.style.border = nearLimitDate;
+                  }
+                }
               }
             }
         });
