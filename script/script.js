@@ -86,10 +86,9 @@ if(url.indexOf('backlog.jp/board/')!=-1){
                   nearLimitDateValue.setHours(23);
                   nearLimitDateValue.setMinutes(59);
                   nearLimitDateValue.setDate(nearLimitDateValue.getDate()-1);
-                  diffDate = nearLimitDateValue - nowDate;{
-                    if(diffDate<0){
-                      cardElements.parentNode.style.border = nearLimitDate;
-                    }
+                  diffDate = nearLimitDateValue - nowDate;
+                  if(diffDate<0){
+                    cardElements.parentNode.style.border = nearLimitDate;
                   }
                 }
               }
