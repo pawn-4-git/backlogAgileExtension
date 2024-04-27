@@ -37,8 +37,16 @@ if(url.indexOf('backlog.jp/board/')!=-1){
 
       listElementsArray.forEach(function(element) {
         let titleElements = element.getElementsByClassName("css-e9ni64-box");
+        let closeTaskList=false;
 
         let titleElementsArray = Array.from(titleElements);
+        titleElementsArray.forEach(function(titleElements) {
+          if(titleElements.tagName == "SPAN" || titleElements.tagName =="span"){
+            if(titleElements.innerText=="完了" || titleElements.innerText=="処理済み"){
+              closeTaskList=true;
+            }
+          }
+        });
 
         let cardElements = element.getElementsByClassName("card-summary");
 
@@ -70,66 +78,70 @@ if(url.indexOf('backlog.jp/board/')!=-1){
                 cardElements.parentNode.style.backgroundColor = safetyLevel;
               }
             }
-            let limitDate=cardElements.parentNode.querySelectorAll('input[aria-label]');
-            if(limitDate.length>0){
-              let limitDateValue = limitDate[0].value;
-              if(limitDateValue.match(/^\d{4}\/\d{2}\/\d{2}$/)){
-                let limitDateValueDate = new Date(limitDateValue);
-                limitDateValueDate.setHours(23);
-                limitDateValueDate.setMinutes(59);
-                let nowDate = new Date();
-                let diffDate = limitDateValueDate - nowDate;
-                if(diffDate<0){
-                  cardElements.parentNode.style.border = overLimitDate;
-                }else{
-                  let nearLimitDateValue = new Date(limitDateValue);
-                  nearLimitDateValue.setHours(23);
-                  nearLimitDateValue.setMinutes(59);
-                  nearLimitDateValue.setDate(nearLimitDateValue.getDate()-1);
-                  diffDate = nearLimitDateValue - nowDate;
+            if(!closeTaskList){
+              let limitDate=cardElements.parentNode.querySelectorAll('input[aria-label]');
+              if(limitDate.length>0){
+                let limitDateValue = limitDate[0].value;
+                if(limitDateValue.match(/^\d{4}\/\d{2}\/\d{2}$/)){
+                  let limitDateValueDate = new Date(limitDateValue);
+                  limitDateValueDate.setHours(23);
+                  limitDateValueDate.setMinutes(59);
+                  let nowDate = new Date();
+                  let diffDate = limitDateValueDate - nowDate;
                   if(diffDate<0){
-                    cardElements.parentNode.style.border = nearLimitDate;
+                    cardElements.parentNode.style.border = overLimitDate;
+                  }else{
+                    let nearLimitDateValue = new Date(limitDateValue);
+                    nearLimitDateValue.setHours(23);
+                    nearLimitDateValue.setMinutes(59);
+                    nearLimitDateValue.setDate(nearLimitDateValue.getDate()-1);
+                    diffDate = nearLimitDateValue - nowDate;{
+                      if(diffDate<0){
+                        cardElements.parentNode.style.border = nearLimitDate;
+                      }
+                    }
                   }
                 }
               }
             }
         });
 
-      
-        titleElementsArray.forEach(function(titleElements) {
-          if(titleElements.tagName == "SPAN" || titleElements.tagName =="span"){
-            let timeElementsScheduledEstimated = titleElements.getElementsByClassName("estimated_time");
-            //timeElementsScheduledがなければ要素を追加する
-            if(timeElementsScheduledEstimated.length == 0){
-              let timeElements = document.createElement("span");
-              timeElements.className = "estimated_time";
-              timeElements.textContent = "予定:"+estimatedSum;  
-              titleElements.appendChild(timeElements);
-            }else{
-              timeElementsScheduledEstimated[0].textContent = "予定:"+estimatedSum;
-            }
+        if(!closeTaskList){
+          titleElementsArray.forEach(function(titleElements) {
+            if(titleElements.tagName == "SPAN" || titleElements.tagName =="span"){
+              let timeElementsScheduledEstimated = titleElements.getElementsByClassName("estimated_time");
+              //timeElementsScheduledがなければ要素を追加する
+              if(timeElementsScheduledEstimated.length == 0){
+                let timeElements = document.createElement("span");
+                timeElements.className = "estimated_time";
+                timeElements.textContent = "予定:"+estimatedSum;  
+                titleElements.appendChild(timeElements);
+              }else{
+                timeElementsScheduledEstimated[0].textContent = "予定:"+estimatedSum;
+              }
 
-            let timeElementsScheduledPunctuation = titleElements.getElementsByClassName("punctuation");
-            //punctuationScheduledがなければ要素を追加する
-            if(timeElementsScheduledPunctuation.length == 0){
-              let timeElements = document.createElement("span");
-              timeElements.className = "punctuation";
-              timeElements.textContent = "/";  
-              titleElements.appendChild(timeElements);
-            }
+              let timeElementsScheduledPunctuation = titleElements.getElementsByClassName("punctuation");
+              //punctuationScheduledがなければ要素を追加する
+              if(timeElementsScheduledPunctuation.length == 0){
+                let timeElements = document.createElement("span");
+                timeElements.className = "punctuation";
+                timeElements.textContent = "/";  
+                titleElements.appendChild(timeElements);
+              }
 
-            let timeElementsScheduledActual = titleElements.getElementsByClassName("actual_time");
-            //timeElementsScheduledがなければ要素を追加する
-            if(timeElementsScheduledActual.length == 0){
-              let timeElements = document.createElement("span");
-              timeElements.className = "actual_time";
-              timeElements.textContent = "実績:"+actualSum;  
-              titleElements.appendChild(timeElements);
-            }else{
-              timeElementsScheduledActual[0].textContent = "実績:"+actualSum;
+              let timeElementsScheduledActual = titleElements.getElementsByClassName("actual_time");
+              //timeElementsScheduledがなければ要素を追加する
+              if(timeElementsScheduledActual.length == 0){
+                let timeElements = document.createElement("span");
+                timeElements.className = "actual_time";
+                timeElements.textContent = "実績:"+actualSum;  
+                titleElements.appendChild(timeElements);
+              }else{
+                timeElementsScheduledActual[0].textContent = "実績:"+actualSum;
+              }
             }
-          }
-        });
+          });
+        }
      });
       
   } 
