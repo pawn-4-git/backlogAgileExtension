@@ -64,7 +64,7 @@ function filterAccount() {
   
 }
 
-if(url.indexOf('backlog.jp/board/')!=-1){
+if(url.indexOf('backlog.jp/board/')!=-1 || url.indexOf('backlog.com/board/')!=-1){
   function boardFunction() {
       let listElements = document.getElementsByClassName("css-hrpltn-col");
 
