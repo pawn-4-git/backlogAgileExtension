@@ -48,7 +48,7 @@ function filterAccount() {
   let allCardElementsArray = Array.from(allCardElements);
   
     allCardElementsArray.forEach(function(cardElements) {
-      if(selectedValues.length==0){
+      if(selectedValues.length === 0){
         cardElements.parentNode.parentNode.classList.remove("cardFilter");
       }else{
         for(let i=0;i<selectedValues.length;i++){
@@ -152,7 +152,7 @@ if(url.indexOf('backlog.jp/board/')!=-1){
               let name=cardElements.parentNode.querySelectorAll('button[aria-label="担当者"]')[0].querySelectorAll('img');
               
               let accountlistElement= document.getElementById("accountListSelect");
-              if(name.length==1 && accountList.indexOf(name[0].alt)==-1 && accountlistElement!=null){
+              if(name.length === 1 && accountList.indexOf(name[0].alt) === -1 && accountlistElement!=null){
                 let accountListOption = document.createElement("option");
                 accountListOption.value = name[0].alt;
                 accountListOption.textContent = name[0].alt;
@@ -164,10 +164,10 @@ if(url.indexOf('backlog.jp/board/')!=-1){
 
         if(!closeTaskList){
           titleElementsArray.forEach(function(titleElements) {
-            if(titleElements.tagName == "SPAN" || titleElements.tagName =="span"){
+            if(titleElements.tagName == "SPAN" || titleElements.tagName == "span"){
               let timeElementsScheduledEstimated = titleElements.getElementsByClassName("estimated_time");
               //timeElementsScheduledがなければ要素を追加する
-              if(timeElementsScheduledEstimated.length == 0){
+              if(timeElementsScheduledEstimated.length === 0){
                 let timeElements = document.createElement("span");
                 timeElements.className = "estimated_time";
                 timeElements.textContent = "予定:"+estimatedSum;  
@@ -178,7 +178,7 @@ if(url.indexOf('backlog.jp/board/')!=-1){
 
               let timeElementsScheduledPunctuation = titleElements.getElementsByClassName("punctuation");
               //punctuationScheduledがなければ要素を追加する
-              if(timeElementsScheduledPunctuation.length == 0){
+              if(timeElementsScheduledPunctuation.length === 0){
                 let timeElements = document.createElement("span");
                 timeElements.className = "punctuation";
                 timeElements.textContent = "/";  
@@ -187,7 +187,7 @@ if(url.indexOf('backlog.jp/board/')!=-1){
 
               let timeElementsScheduledActual = titleElements.getElementsByClassName("actual_time");
               //timeElementsScheduledがなければ要素を追加する
-              if(timeElementsScheduledActual.length == 0){
+              if(timeElementsScheduledActual.length === 0){
                 let timeElements = document.createElement("span");
                 timeElements.className = "actual_time";
                 timeElements.textContent = "実績:"+actualSum;  
