@@ -31,10 +31,10 @@ function isNumeric(str) {
 }
 
 function getSelectedAccount() {
-  var selectElement = document.getElementById('accountListSelect');
-  var selectedValues = [];
+  let selectElement = document.getElementById('accountListSelect');
+  let selectedValues = [];
   for (let i = 0; i < selectElement.options.length; i++) {
-      var option = selectElement.options[i];
+      let option = selectElement.options[i];
       if (option.selected) {
           selectedValues.push(option.value);
       }
