@@ -33,7 +33,7 @@ function isNumeric(str) {
 function getSelectedAccount() {
   var selectElement = document.getElementById('accountListSelect');
   var selectedValues = [];
-  for (var i = 0; i < selectElement.options.length; i++) {
+  for (let i = 0; i < selectElement.options.length; i++) {
       var option = selectElement.options[i];
       if (option.selected) {
           selectedValues.push(option.value);
@@ -51,7 +51,7 @@ function filterAccount() {
       if(selectedValues.length==0){
         cardElements.parentNode.parentNode.classList.remove("cardFilter");
       }else{
-        for(i=0;i<selectedValues.length;i++){
+        for(let i=0;i<selectedValues.length;i++){
           if(cardElements.dataset.tooltip==selectedValues[i]){
             cardElements.parentNode.parentNode.classList.remove("cardFilter");
             break;
