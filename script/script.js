@@ -5,6 +5,7 @@ const warningLevel = "khaki";
 const dangerLevel = "lightcoral";
 const overLimitDate = "5px solid red";
 const nearLimitDate = "5px solid yellow";
+let accountList = [];
 
 function estimatedExtractNumberInParentheses(str) {
   const regex = /\(([\d.]+)\)/;
@@ -29,7 +30,41 @@ function isNumeric(str) {
   return !isNaN(parseFloat(str)) && isFinite(str);
 }
 
-if(url.indexOf('backlog.jp/board/')!=-1){
+function getSelectedAccount() {
+  let selectElement = document.getElementById('accountListSelect');
+  let selectedValues = [];
+  for (let i = 0; i < selectElement.options.length; i++) {
+      let option = selectElement.options[i];
+      if (option.selected) {
+          selectedValues.push(option.value);
+      }
+  }
+  return selectedValues;
+}
+
+function filterAccount() {
+  let selectedValues = getSelectedAccount();
+  let allCardElements = document.getElementsByClassName("card-user-icon");
+  let allCardElementsArray = Array.from(allCardElements);
+  
+    allCardElementsArray.forEach(function(cardElements) {
+      if(selectedValues.length === 0){
+        cardElements.parentNode.parentNode.classList.remove("cardFilter");
+      }else{
+        for(let i=0;i<selectedValues.length;i++){
+          if(cardElements.dataset.tooltip==selectedValues[i]){
+            cardElements.parentNode.parentNode.classList.remove("cardFilter");
+            break;
+          }else{
+            cardElements.parentNode.parentNode.classList.add("cardFilter");
+          }
+        }
+      }
+    });
+  
+}
+
+if(url.indexOf('backlog.jp/board/')!=-1 || url.indexOf('backlog.com/board/')!=-1){
   function boardFunction() {
       let listElements = document.getElementsByClassName("css-hrpltn-col");
 
@@ -56,26 +91,37 @@ if(url.indexOf('backlog.jp/board/')!=-1){
         let actualSum=0;
 
         cardElementsArray.forEach(function(cardElements) {
-            cardtitle=cardElements.innerHTML;
-            let estimatedValue=estimatedExtractNumberInParentheses(cardtitle);
-            if(estimatedValue!=-1){
-              estimatedSum += estimatedValue;
+            let cardClassList=cardElements.parentNode.classList;
+            let classCheck=true;
+            for(i=0;i<cardClassList.length;i++){
+              if(cardClassList[i]=="cardFilter"){
+                classCheck=false;
+                break;
+              }
             }
-            let actualValue=actualExtractNumberInParentheses(cardtitle);
-            if(actualValue!=-1){
-              actualSum += actualValue;
-            }
-            if(estimatedValue!=-1){
+            if(classCheck){ 
+              cardtitle=cardElements.innerHTML;
+              let estimatedValue=estimatedExtractNumberInParentheses(cardtitle);
+              if(estimatedValue!=-1){
+                estimatedSum += estimatedValue;
+              }
+              let actualValue=actualExtractNumberInParentheses(cardtitle);
               if(actualValue!=-1){
-                if(estimatedValue<actualValue){
-                  cardElements.parentNode.style.backgroundColor = dangerLevel;
-                }else if(estimatedValue*0.7<actualValue){
-                  cardElements.parentNode.style.backgroundColor = warningLevel;
+                actualSum += actualValue;
+              }
+            
+              if(estimatedValue!=-1){
+                if(actualValue!=-1){
+                  if(estimatedValue<actualValue){
+                    cardElements.parentNode.style.backgroundColor = dangerLevel;
+                  }else if(estimatedValue*0.7<actualValue){
+                    cardElements.parentNode.style.backgroundColor = warningLevel;
+                  }else{
+                    cardElements.parentNode.style.backgroundColor = safetyLevel;
+                  }
                 }else{
                   cardElements.parentNode.style.backgroundColor = safetyLevel;
                 }
-              }else{
-                cardElements.parentNode.style.backgroundColor = safetyLevel;
               }
             }
             if(!closeTaskList){
@@ -103,15 +149,25 @@ if(url.indexOf('backlog.jp/board/')!=-1){
                   }
                 }
               }
+              let name=cardElements.parentNode.querySelectorAll('button[aria-label="担当者"]')[0].querySelectorAll('img');
+              
+              let accountlistElement= document.getElementById("accountListSelect");
+              if(name.length === 1 && accountList.indexOf(name[0].alt) === -1 && accountlistElement!=null){
+                let accountListOption = document.createElement("option");
+                accountListOption.value = name[0].alt;
+                accountListOption.textContent = name[0].alt;
+                accountlistElement.appendChild(accountListOption);
+                accountList.push(name[0].alt);
+              }
             }
         });
 
         if(!closeTaskList){
           titleElementsArray.forEach(function(titleElements) {
-            if(titleElements.tagName == "SPAN" || titleElements.tagName =="span"){
+            if(titleElements.tagName == "SPAN" || titleElements.tagName == "span"){
               let timeElementsScheduledEstimated = titleElements.getElementsByClassName("estimated_time");
               //timeElementsScheduledがなければ要素を追加する
-              if(timeElementsScheduledEstimated.length == 0){
+              if(timeElementsScheduledEstimated.length === 0){
                 let timeElements = document.createElement("span");
                 timeElements.className = "estimated_time";
                 timeElements.textContent = "予定:"+estimatedSum;  
@@ -122,7 +178,7 @@ if(url.indexOf('backlog.jp/board/')!=-1){
 
               let timeElementsScheduledPunctuation = titleElements.getElementsByClassName("punctuation");
               //punctuationScheduledがなければ要素を追加する
-              if(timeElementsScheduledPunctuation.length == 0){
+              if(timeElementsScheduledPunctuation.length === 0){
                 let timeElements = document.createElement("span");
                 timeElements.className = "punctuation";
                 timeElements.textContent = "/";  
@@ -131,7 +187,7 @@ if(url.indexOf('backlog.jp/board/')!=-1){
 
               let timeElementsScheduledActual = titleElements.getElementsByClassName("actual_time");
               //timeElementsScheduledがなければ要素を追加する
-              if(timeElementsScheduledActual.length == 0){
+              if(timeElementsScheduledActual.length === 0){
                 let timeElements = document.createElement("span");
                 timeElements.className = "actual_time";
                 timeElements.textContent = "実績:"+actualSum;  
@@ -141,6 +197,48 @@ if(url.indexOf('backlog.jp/board/')!=-1){
               }
             }
           });
+        }
+        let accountFilterDialog = document.createElement("dialog");
+        accountFilterDialog.id = "accountFilterDialog";
+        let accountListSelect=document.createElement("select");
+        accountListSelect.id = "accountListSelect";
+        accountListSelect.multiple = "multiple";
+        accountListSelect.classList = "accountListSelect";
+        accountListSelect.addEventListener("change", function() {
+          filterAccount();
+        });
+        let accountListOptionNotSelect = document.createElement("option");
+        accountListOptionNotSelect.value = "未設定";
+        accountListOptionNotSelect.textContent = "未設定";
+        accountListSelect.appendChild(accountListOptionNotSelect);
+        accountFilterDialog.appendChild(accountListSelect);
+        let brElement = document.createElement("br");
+        accountFilterDialog.appendChild(brElement);
+        let accountFilterCloseButton = document.createElement("button");
+        accountFilterCloseButton.textContent = "閉じる";
+        accountFilterCloseButton.classList ="accountFilterCloseButton"
+        accountFilterCloseButton.addEventListener("click", function() {
+          let dialog = document.getElementById("accountFilterDialog");
+          dialog.close();
+        });
+        accountFilterDialog.appendChild(accountFilterCloseButton);
+        let fileter=document.getElementById("filterButton").parentNode;
+        let accountFilterButton = document.getElementById("accountFilterDialog");
+        if(fileter!=null && accountFilterButton==null){
+          fileter.appendChild(accountFilterDialog);
+          let accountFilterButtonElement = document.createElement("button");
+          let accountFilterButtonTextElement = document.createElement("span");
+          accountFilterButtonTextElement.textContent = "担当者複数選択フィルター";
+          accountFilterButtonTextElement.classList = "_assistive-text";
+          accountFilterButtonElement.id = "accountFilterButton";
+          accountFilterButtonElement.type = "button";
+          accountFilterButtonElement.classList = "icon-button icon-button--default title-group__edit-actions-item | simptip-position-top simptip-movable simptip-smooth -with-text"
+          accountFilterButtonElement.appendChild(accountFilterButtonTextElement);
+          accountFilterButtonElement.addEventListener("click", function() {
+            let dialog = document.getElementById("accountFilterDialog");
+            dialog.showModal();
+          });
+          fileter.appendChild(accountFilterButtonElement);
         }
      });
       

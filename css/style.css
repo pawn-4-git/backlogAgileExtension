@@ -10,3 +10,31 @@
     margin-left: 5px;
     margin-right: 5px;
   }
+
+  .accountFilterCloseButton {
+    /* ボタンのスタイル設定 */
+    padding: 10px 20px;           /* パディング設定 */
+    background-color: #4CAF50;    /* 背景色 */
+    color: white;                 /* 文字色 */
+    border: none;                 /* 枠線なし */
+    border-radius: 10px;          /* 角丸設定 (10pxの半径で丸く) */
+    cursor: pointer;              /* カーソルをポインターに */
+    font-size: 16px;              /* フォントサイズ */
+    margin: 20px auto;            /* 上下に20px、左右autoで中央寄せ */
+    display: block;               /* ブロックレベル要素として扱い、widthが有効になる */
+    width: 200px;                 /* 幅の指定 */
+    transition: background 0.3s;  /* 背景色の変化をアニメーション */
+  }
+  
+  .accountFilterCloseButton:hover {
+    background-color: #45a049;    /* ホバー時の背景色 */
+  }
+
+  .accountListSelect{
+    width: 200px; 
+  }
+
+  .cardFilter{
+    display: none;
+  }
+
