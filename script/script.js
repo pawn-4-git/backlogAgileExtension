@@ -107,7 +107,7 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
       cardElementsArray.forEach(function (cardElements) {
         let cardClassList = cardElements.parentNode.classList;
         let classCheck = true;
-        for (i = 0; i < cardClassList.length; i++) {
+        for (let i = 0; i < cardClassList.length; i++) {
           if (cardClassList[i] == "cardFilter") {
             classCheck = false;
             break;
