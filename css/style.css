@@ -38,3 +38,11 @@
     display: none;
   }
 
+  .SlotBox > .overLimitDate{
+    border:5px solid red;
+  }
+
+  .SlotBox > .nearLimitDate{
+    border:5px solid yellow;
+  }
+
