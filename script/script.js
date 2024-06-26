@@ -225,6 +225,18 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
       accountFilterDialog.appendChild(accountListSelect);
       let brElement = document.createElement("br");
       accountFilterDialog.appendChild(brElement);
+      let allAccountCheckClearbutton = document.createElement("button");
+      allAccountCheckClearbutton.textContent = "選択解除";
+      allAccountCheckClearbutton.classList = "accountFilterCloseButton"
+      allAccountCheckClearbutton.addEventListener("click", function () {
+        let filter = document.getElementById("accountListSelect");
+        for (let i = 0; i < filter.options.length; i++) {
+          let option = filter.options[i];
+          option.selected = false;
+        }
+        filterAccount();
+      });
+      accountFilterDialog.appendChild(allAccountCheckClearbutton);
       let accountFilterCloseButton = document.createElement("button");
       accountFilterCloseButton.textContent = "閉じる";
       accountFilterCloseButton.classList = "accountFilterCloseButton"
