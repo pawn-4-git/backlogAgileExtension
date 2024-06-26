@@ -214,7 +214,7 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
       let accountListSelect = document.createElement("select");
       accountListSelect.id = "accountListSelect";
       accountListSelect.multiple = "multiple";
-      accountListSelect.classList = "accountListSelect";
+      accountListSelect.classList.add('accountListSelect');
       accountListSelect.addEventListener("change", function () {
         filterAccount();
       });
@@ -227,7 +227,7 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
       accountFilterDialog.appendChild(brElement);
       let allAccountCheckClearbutton = document.createElement("button");
       allAccountCheckClearbutton.textContent = "選択解除";
-      allAccountCheckClearbutton.classList = "accountFilterCloseButton"
+      allAccountCheckClearbutton.classList.add('accountFilterCloseButton');
       allAccountCheckClearbutton.addEventListener("click", function () {
         let filter = document.getElementById("accountListSelect");
         for (let i = 0; i < filter.options.length; i++) {
@@ -239,7 +239,7 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
       accountFilterDialog.appendChild(allAccountCheckClearbutton);
       let accountFilterCloseButton = document.createElement("button");
       accountFilterCloseButton.textContent = "閉じる";
-      accountFilterCloseButton.classList = "accountFilterCloseButton"
+      accountFilterCloseButton.classList.add('accountFilterCloseButton');
       accountFilterCloseButton.addEventListener("click", function () {
         let dialog = document.getElementById("accountFilterDialog");
         dialog.close();
@@ -252,10 +252,17 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
         let accountFilterButtonElement = document.createElement("button");
         let accountFilterButtonTextElement = document.createElement("span");
         accountFilterButtonTextElement.textContent = "担当者複数選択フィルター";
-        accountFilterButtonTextElement.classList = "_assistive-text";
+        accountFilterButtonTextElement.classList.add('_assistive-text');
         accountFilterButtonElement.id = "accountFilterButton";
         accountFilterButtonElement.type = "button";
-        accountFilterButtonElement.classList = "icon-button icon-button--default title-group__edit-actions-item | simptip-position-top simptip-movable simptip-smooth -with-text"
+        accountFilterButtonElement.classList.add('icon-button');
+        accountFilterButtonElement.classList.add('icon-button--default');
+        accountFilterButtonElement.classList.add('title-group__edit-actions-item');
+        accountFilterButtonElement.classList.add('simptip-position-top');
+        accountFilterButtonElement.classList.add('simptip-movable');
+        accountFilterButtonElement.classList.add('simptip-smooth');
+        accountFilterButtonElement.classList.add('-with-text');
+
         accountFilterButtonElement.appendChild(accountFilterButtonTextElement);
         accountFilterButtonElement.addEventListener("click", function () {
           let dialog = document.getElementById("accountFilterDialog");
