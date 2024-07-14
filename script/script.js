@@ -241,10 +241,20 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
       accountFilterCloseButton.textContent = "閉じる";
       accountFilterCloseButton.classList.add('accountFilterCloseButton');
       accountFilterCloseButton.addEventListener("click", function () {
-        let dialog = document.getElementById("accountFilterDialog");
-        dialog.close();
+        accountFilterDialog.close();
       });
       accountFilterDialog.appendChild(accountFilterCloseButton);
+      //範囲外をクリックしたらDialogを閉じる
+      accountFilterDialog.addEventListener("click", function (event) {
+        const dialogRect = accountFilterDialog.getBoundingClientRect();
+        if (event['pageX'] < dialogRect.left
+          || event['pageX'] > dialogRect.right
+          || event['pageY'] < dialogRect.top
+          || event['pageY'] > dialogRect.bottom) {
+          accountFilterDialog.close();
+        }
+      });
+
       let fileter = document.getElementById("filterButton").parentNode;
       let accountFilterButton = document.getElementById("accountFilterDialog");
       if (fileter != null && accountFilterButton == null) {
