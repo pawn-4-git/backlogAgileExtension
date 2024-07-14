@@ -247,10 +247,10 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
       //範囲外をクリックしたらDialogを閉じる
       accountFilterDialog.addEventListener("click", function (event) {
         const dialogRect = accountFilterDialog.getBoundingClientRect();
-        if (event['pageX'] < dialogRect.left
-          || event['pageX'] > dialogRect.right
-          || event['pageY'] < dialogRect.top
-          || event['pageY'] > dialogRect.bottom) {
+        if (event.pageX < dialogRect.left
+          || event.pageX > dialogRect.right
+          || event.pageY < dialogRect.top
+          || event.pageY > dialogRect.bottom) {
           accountFilterDialog.close();
         }
       });
