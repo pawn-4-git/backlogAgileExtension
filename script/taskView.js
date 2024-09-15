@@ -55,7 +55,7 @@ function taskViewFuction() {
                 if (percent > 0) {
                     text = text + '<span class="taskDiscription" style="color:' + color + ';">' + title + '・・・' + Math.floor(count * 100 / total) + "%</span><br/>"
                 }
-                totalPercent += roundToSpecificRule(count * 100 / total);
+                totalPercent += percent;
 
             }
             console.log(gettitle(list[i]));
