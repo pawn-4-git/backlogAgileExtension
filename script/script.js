@@ -209,6 +209,8 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
           }
         });
       }
+
+      //複数アカウント選択ボタン設定
       let accountFilterDialog = document.createElement("dialog");
       accountFilterDialog.id = "accountFilterDialog";
       let accountListSelect = document.createElement("select");
@@ -280,8 +282,65 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
         });
         fileter.appendChild(accountFilterButtonElement);
       }
-    });
 
+      //カテゴリーで指定されたタスク実行状況
+      let categoryElement = document.getElementById("filter.category");
+      let categoryElementParent = categoryElement.parentNode;
+      const divElements = categoryElementParent.querySelectorAll('div');
+      let selectCheck = false;
+      divElements.forEach(div => {
+        if (div.innerText.length > 0) {
+          selectCheck = true;
+        }
+      });
+      let categorytaskDialogExist = document.getElementById("categoryTaskDialog");
+      let categoryTaskDialog = document.createElement("dialog");
+      categoryTaskDialog.id = "categoryTaskDialog";
+      categoryTaskDialog.classList.add('categoryDialog');
+      //範囲外をクリックしたらDialogを閉じる
+      categoryTaskDialog.addEventListener("click", function (event) {
+        const dialogRect = categoryTaskDialog.getBoundingClientRect();
+        if (event.clientX < dialogRect.left
+          || event.clientX > dialogRect.right
+          || event.clientY < dialogRect.top
+          || event.clientY > dialogRect.bottom) {
+          categoryTaskDialog.close();
+        }
+      });
+
+      if (fileter != null && categorytaskDialogExist == null) {
+        fileter.appendChild(categoryTaskDialog);
+
+        let taskViewButtonElement = document.createElement("button");
+        let taskViewButtonTextElement = document.createElement("span");
+        taskViewButtonTextElement.textContent = "状態確認";
+        taskViewButtonTextElement.classList.add('_assistive-text');
+        taskViewButtonElement.id = "taskViewButton";
+        taskViewButtonElement.type = "button";
+        taskViewButtonElement.classList.add('icon-button');
+        taskViewButtonElement.classList.add('icon-button--default');
+        taskViewButtonElement.classList.add('title-group__edit-actions-item');
+        taskViewButtonElement.classList.add('simptip-position-top');
+        taskViewButtonElement.classList.add('simptip-movable');
+        taskViewButtonElement.classList.add('simptip-smooth');
+        taskViewButtonElement.classList.add('-with-text');
+
+        taskViewButtonElement.appendChild(taskViewButtonTextElement);
+
+        taskViewButtonElement.addEventListener("click", function () {
+          taskViewFuction();
+        });
+        fileter.appendChild(taskViewButtonElement);
+      }
+      let taskViewButton = document.getElementById("taskViewButton");
+      if (selectCheck && taskViewButton != null) {
+        taskViewButton.disabled = false;
+
+      } else {
+        taskViewButton.disabled = true;
+      }
+
+    });
   }
 
   // 一定時間ごとに関数を呼び出すタイマーを設定

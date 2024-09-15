@@ -1,48 +1,132 @@
 .estimated_time {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  .punctuation {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  .actual_time {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
+  margin-left: 5px;
+  margin-right: 5px;
+}
 
-  .accountFilterCloseButton {
-    /* ボタンのスタイル設定 */
-    padding: 10px 20px;           /* パディング設定 */
-    background-color: #4CAF50;    /* 背景色 */
-    color: white;                 /* 文字色 */
-    border: none;                 /* 枠線なし */
-    border-radius: 10px;          /* 角丸設定 (10pxの半径で丸く) */
-    cursor: pointer;              /* カーソルをポインターに */
-    font-size: 16px;              /* フォントサイズ */
-    margin: 20px auto;            /* 上下に20px、左右autoで中央寄せ */
-    display: block;               /* ブロックレベル要素として扱い、widthが有効になる */
-    width: 200px;                 /* 幅の指定 */
-    transition: background 0.3s;  /* 背景色の変化をアニメーション */
-  }
-  
-  .accountFilterCloseButton:hover {
-    background-color: #45a049;    /* ホバー時の背景色 */
-  }
+.punctuation {
+  margin-left: 5px;
+  margin-right: 5px;
+}
 
-  .accountListSelect{
-    width: 200px; 
-  }
+.actual_time {
+  margin-left: 5px;
+  margin-right: 5px;
+}
 
-  .cardFilter{
-    display: none;
-  }
+.accountFilterCloseButton {
+  /* ボタンのスタイル設定 */
+  padding: 10px 20px;
+  /* パディング設定 */
+  background-color: #4CAF50;
+  /* 背景色 */
+  color: white;
+  /* 文字色 */
+  border: none;
+  /* 枠線なし */
+  border-radius: 10px;
+  /* 角丸設定 (10pxの半径で丸く) */
+  cursor: pointer;
+  /* カーソルをポインターに */
+  font-size: 16px;
+  /* フォントサイズ */
+  margin: 20px auto;
+  /* 上下に20px、左右autoで中央寄せ */
+  display: block;
+  /* ブロックレベル要素として扱い、widthが有効になる */
+  width: 200px;
+  /* 幅の指定 */
+  transition: background 0.3s;
+  /* 背景色の変化をアニメーション */
+}
 
-  .SlotBox > .overLimitDate{
-    border:5px solid red;
-  }
+.accountFilterCloseButton:hover {
+  background-color: #45a049;
+  /* ホバー時の背景色 */
+}
 
-  .SlotBox > .nearLimitDate{
-    border:5px solid yellow;
-  }
+.accountListSelect {
+  width: 200px;
+}
 
+.cardFilter {
+  display: none;
+}
+
+.SlotBox>.overLimitDate {
+  border: 5px solid red;
+}
+
+.SlotBox>.nearLimitDate {
+  border: 5px solid yellow;
+}
+
+
+:root {
+  --r: 100px;
+}
+
+.label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: calc(var(--r) * 0.3);
+  color: green;
+}
+
+.label-1 {
+  --start: 0;
+  --end: 0.3;
+  --percentage: calc((var(--start) + var(--end)) / 2);
+  --angle: calc(var(--percentage) * 360deg);
+  --deg: calc(-90deg + var(--angle));
+  translate: calc(cos(var(--deg)) * var(--r) - 50%) calc(sin(var(--deg)) * var(--r) - 50%);
+}
+
+.label-2 {
+  --start: 0.3;
+  --end: 0.6;
+  --percentage: calc((var(--start) + var(--end)) / 2);
+  --angle: calc(var(--percentage) * 360deg);
+  --deg: calc(-90deg + var(--angle));
+  translate: calc(cos(var(--deg)) * var(--r) - 50%) calc(sin(var(--deg)) * var(--r) - 50%);
+}
+
+.label-3 {
+  --start: 0.6;
+  --end: 1;
+  --percentage: calc((var(--start) + var(--end)) / 2);
+  --angle: calc(var(--percentage) * 360deg);
+  --deg: calc(-90deg + var(--angle));
+  translate: calc(cos(var(--deg)) * var(--r) - 50%) calc(sin(var(--deg)) * var(--r) - 50%);
+  color: white;
+}
+
+.categoryDialog {
+  height: 300px;
+  width: 500px;
+}
+
+.taskViewDiv {
+  height: 200px;
+  width: 200px;
+}
+
+.circleClass {
+
+  fill: none;
+  stroke-width: 10;
+  stroke-dasharray: 100;
+  /* 最初は非表示状態 */
+  stroke-dashoffset: 100;
+}
+
+.circleView {
+  display: inline-block;
+  transform-origin: center;
+  transform: rotate(-90deg);
+  height: 200px;
+}
+
+.taskDiscription {
+  font-weight: bold;
+}
