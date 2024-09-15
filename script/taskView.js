@@ -39,6 +39,9 @@ function taskViewFuction() {
             let title = gettitle(list[i]);
             if (title != '処理済み' && title != '完了') {
                 let percent = roundToSpecificRule(count * 100 / total);
+                if (percent < 5) {
+                    percent = 5;
+                }
                 let circle = document.createElementNS(svg, 'circle');
                 circle.style.setProperty('stroke', color);
                 circle.style.setProperty('animation', 'percent' + totalPercent + ' 2s ease-in-out forwards');
@@ -132,16 +135,16 @@ function gettitle(listItem) {
 function roundToSpecificRule(num) {
     const onesPlace = num % 10;  // 1の位を取得
     if (onesPlace >= 1 && onesPlace <= 2) {
-        // 1から5の場合は、1の位を5にする
+        // 1から2の場合は、1の位を0にする
         return Math.floor(num / 10) * 10;
     } else if (onesPlace >= 3 && onesPlace <= 7) {
-        // 1から5の場合は、1の位を5にする
+        // 3から7の場合は、1の位を5にする
         return Math.floor(num / 10) * 10 + 5;
-    } else if (onesPlace >= 7 && onesPlace <= 9) {
-        // 6から9の場合は繰り上げて0にする
+    } else if (onesPlace >= 8 && onesPlace <= 9) {
+        // 8から9の場合は繰り上げて0にする
         return Math.ceil(num / 10) * 10;
     } else {
         // 1の位が0の場合はそのまま返す
-        return num;
+        return Math.floor(num / 10) * 10;
     }
 }
