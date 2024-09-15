@@ -1,0 +1,125 @@
+@keyframes percent0 {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes percent5 {
+    to {
+        stroke-dashoffset: 5;
+    }
+}
+
+@keyframes percent10 {
+    to {
+        stroke-dashoffset: 10;
+    }
+}
+
+@keyframes percent15 {
+    to {
+        stroke-dashoffset: 15;
+    }
+}
+
+@keyframes percent20 {
+    to {
+        stroke-dashoffset: 20;
+    }
+}
+
+@keyframes percent25 {
+    to {
+        stroke-dashoffset: 25;
+    }
+}
+
+@keyframes percent30 {
+    to {
+        stroke-dashoffset: 30;
+    }
+}
+
+@keyframes percent35 {
+    to {
+        stroke-dashoffset: 35;
+    }
+}
+
+@keyframes percent40 {
+    to {
+        stroke-dashoffset: 40;
+    }
+}
+
+@keyframes percent45 {
+    to {
+        stroke-dashoffset: 45;
+    }
+}
+
+@keyframes percent50 {
+    to {
+        stroke-dashoffset: 50;
+    }
+}
+
+@keyframes percent55 {
+    to {
+        stroke-dashoffset: 55;
+    }
+}
+
+@keyframes percent60 {
+    to {
+        stroke-dashoffset: 55;
+    }
+}
+
+@keyframes percent65 {
+    to {
+        stroke-dashoffset: 65;
+    }
+}
+
+@keyframes percent70 {
+    to {
+        stroke-dashoffset: 60;
+    }
+}
+
+@keyframes percent75 {
+    to {
+        stroke-dashoffset: 75;
+    }
+}
+
+@keyframes percent80 {
+    to {
+        stroke-dashoffset: 80;
+    }
+}
+
+@keyframes percent85 {
+    to {
+        stroke-dashoffset: 85;
+    }
+}
+
+@keyframes percent90 {
+    to {
+        stroke-dashoffset: 90;
+    }
+}
+
+@keyframes percent95 {
+    to {
+        stroke-dashoffset: 95;
+    }
+}
+
+@keyframes percent100 {
+    to {
+        stroke-dashoffset: 100;
+    }
+}
