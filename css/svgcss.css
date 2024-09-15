@@ -4,9 +4,57 @@
     }
 }
 
+@keyframes percent1 {
+    to {
+        stroke-dashoffset: 1;
+    }
+}
+
+@keyframes percent2 {
+    to {
+        stroke-dashoffset: 2;
+    }
+}
+
+@keyframes percent3 {
+    to {
+        stroke-dashoffset: 3;
+    }
+}
+
+@keyframes percent4 {
+    to {
+        stroke-dashoffset: 4;
+    }
+}
+
 @keyframes percent5 {
     to {
         stroke-dashoffset: 5;
+    }
+}
+
+@keyframes percent6 {
+    to {
+        stroke-dashoffset: 6;
+    }
+}
+
+@keyframes percent7 {
+    to {
+        stroke-dashoffset: 7;
+    }
+}
+
+@keyframes percent8 {
+    to {
+        stroke-dashoffset: 8;
+    }
+}
+
+@keyframes percent9 {
+    to {
+        stroke-dashoffset: 9;
     }
 }
 
@@ -16,9 +64,57 @@
     }
 }
 
+@keyframes percent11 {
+    to {
+        stroke-dashoffset: 11;
+    }
+}
+
+@keyframes percent12 {
+    to {
+        stroke-dashoffset: 12;
+    }
+}
+
+@keyframes percent13 {
+    to {
+        stroke-dashoffset: 13;
+    }
+}
+
+@keyframes percent14 {
+    to {
+        stroke-dashoffset: 14;
+    }
+}
+
 @keyframes percent15 {
     to {
         stroke-dashoffset: 15;
+    }
+}
+
+@keyframes percent16 {
+    to {
+        stroke-dashoffset: 16;
+    }
+}
+
+@keyframes percent17 {
+    to {
+        stroke-dashoffset: 17;
+    }
+}
+
+@keyframes percent18 {
+    to {
+        stroke-dashoffset: 18;
+    }
+}
+
+@keyframes percent19 {
+    to {
+        stroke-dashoffset: 19;
     }
 }
 
@@ -28,9 +124,57 @@
     }
 }
 
+@keyframes percent21 {
+    to {
+        stroke-dashoffset: 21;
+    }
+}
+
+@keyframes percent22 {
+    to {
+        stroke-dashoffset: 22;
+    }
+}
+
+@keyframes percent23 {
+    to {
+        stroke-dashoffset: 23;
+    }
+}
+
+@keyframes percent24 {
+    to {
+        stroke-dashoffset: 24;
+    }
+}
+
 @keyframes percent25 {
     to {
         stroke-dashoffset: 25;
+    }
+}
+
+@keyframes percent26 {
+    to {
+        stroke-dashoffset: 26;
+    }
+}
+
+@keyframes percent27 {
+    to {
+        stroke-dashoffset: 27;
+    }
+}
+
+@keyframes percent28 {
+    to {
+        stroke-dashoffset: 28;
+    }
+}
+
+@keyframes percent29 {
+    to {
+        stroke-dashoffset: 29;
     }
 }
 
@@ -40,9 +184,57 @@
     }
 }
 
+@keyframes percent31 {
+    to {
+        stroke-dashoffset: 31;
+    }
+}
+
+@keyframes percent32 {
+    to {
+        stroke-dashoffset: 32;
+    }
+}
+
+@keyframes percent33 {
+    to {
+        stroke-dashoffset: 33;
+    }
+}
+
+@keyframes percent34 {
+    to {
+        stroke-dashoffset: 34;
+    }
+}
+
 @keyframes percent35 {
     to {
         stroke-dashoffset: 35;
+    }
+}
+
+@keyframes percent36 {
+    to {
+        stroke-dashoffset: 36;
+    }
+}
+
+@keyframes percent37 {
+    to {
+        stroke-dashoffset: 37;
+    }
+}
+
+@keyframes percent38 {
+    to {
+        stroke-dashoffset: 38;
+    }
+}
+
+@keyframes percent39 {
+    to {
+        stroke-dashoffset: 39;
     }
 }
 
@@ -52,9 +244,57 @@
     }
 }
 
+@keyframes percent41 {
+    to {
+        stroke-dashoffset: 41;
+    }
+}
+
+@keyframes percent42 {
+    to {
+        stroke-dashoffset: 42;
+    }
+}
+
+@keyframes percent43 {
+    to {
+        stroke-dashoffset: 43;
+    }
+}
+
+@keyframes percent44 {
+    to {
+        stroke-dashoffset: 44;
+    }
+}
+
 @keyframes percent45 {
     to {
         stroke-dashoffset: 45;
+    }
+}
+
+@keyframes percent46 {
+    to {
+        stroke-dashoffset: 46;
+    }
+}
+
+@keyframes percent47 {
+    to {
+        stroke-dashoffset: 47;
+    }
+}
+
+@keyframes percent48 {
+    to {
+        stroke-dashoffset: 48;
+    }
+}
+
+@keyframes percent49 {
+    to {
+        stroke-dashoffset: 49;
     }
 }
 
@@ -64,15 +304,87 @@
     }
 }
 
+@keyframes percent51 {
+    to {
+        stroke-dashoffset: 51;
+    }
+}
+
+@keyframes percent52 {
+    to {
+        stroke-dashoffset: 52;
+    }
+}
+
+@keyframes percent53 {
+    to {
+        stroke-dashoffset: 53;
+    }
+}
+
+@keyframes percent54 {
+    to {
+        stroke-dashoffset: 54;
+    }
+}
+
 @keyframes percent55 {
     to {
         stroke-dashoffset: 55;
     }
 }
 
+@keyframes percent56 {
+    to {
+        stroke-dashoffset: 56;
+    }
+}
+
+@keyframes percent57 {
+    to {
+        stroke-dashoffset: 57;
+    }
+}
+
+@keyframes percent58 {
+    to {
+        stroke-dashoffset: 58;
+    }
+}
+
+@keyframes percent59 {
+    to {
+        stroke-dashoffset: 59;
+    }
+}
+
 @keyframes percent60 {
     to {
-        stroke-dashoffset: 55;
+        stroke-dashoffset: 60;
+    }
+}
+
+@keyframes percent61 {
+    to {
+        stroke-dashoffset: 61;
+    }
+}
+
+@keyframes percent62 {
+    to {
+        stroke-dashoffset: 62;
+    }
+}
+
+@keyframes percent63 {
+    to {
+        stroke-dashoffset: 63;
+    }
+}
+
+@keyframes percent64 {
+    to {
+        stroke-dashoffset: 64;
     }
 }
 
@@ -82,9 +394,57 @@
     }
 }
 
+@keyframes percent66 {
+    to {
+        stroke-dashoffset: 66;
+    }
+}
+
+@keyframes percent67 {
+    to {
+        stroke-dashoffset: 67;
+    }
+}
+
+@keyframes percent68 {
+    to {
+        stroke-dashoffset: 68;
+    }
+}
+
+@keyframes percent69 {
+    to {
+        stroke-dashoffset: 69;
+    }
+}
+
 @keyframes percent70 {
     to {
-        stroke-dashoffset: 60;
+        stroke-dashoffset: 70;
+    }
+}
+
+@keyframes percent71 {
+    to {
+        stroke-dashoffset: 71;
+    }
+}
+
+@keyframes percent72 {
+    to {
+        stroke-dashoffset: 72;
+    }
+}
+
+@keyframes percent73 {
+    to {
+        stroke-dashoffset: 73;
+    }
+}
+
+@keyframes percent74 {
+    to {
+        stroke-dashoffset: 74;
     }
 }
 
@@ -94,9 +454,57 @@
     }
 }
 
+@keyframes percent76 {
+    to {
+        stroke-dashoffset: 76;
+    }
+}
+
+@keyframes percent77 {
+    to {
+        stroke-dashoffset: 77;
+    }
+}
+
+@keyframes percent78 {
+    to {
+        stroke-dashoffset: 78;
+    }
+}
+
+@keyframes percent79 {
+    to {
+        stroke-dashoffset: 79;
+    }
+}
+
 @keyframes percent80 {
     to {
         stroke-dashoffset: 80;
+    }
+}
+
+@keyframes percent81 {
+    to {
+        stroke-dashoffset: 81;
+    }
+}
+
+@keyframes percent82 {
+    to {
+        stroke-dashoffset: 82;
+    }
+}
+
+@keyframes percent83 {
+    to {
+        stroke-dashoffset: 83;
+    }
+}
+
+@keyframes percent84 {
+    to {
+        stroke-dashoffset: 84;
     }
 }
 
@@ -106,15 +514,87 @@
     }
 }
 
+@keyframes percent86 {
+    to {
+        stroke-dashoffset: 86;
+    }
+}
+
+@keyframes percent87 {
+    to {
+        stroke-dashoffset: 87;
+    }
+}
+
+@keyframes percent88 {
+    to {
+        stroke-dashoffset: 88;
+    }
+}
+
+@keyframes percent89 {
+    to {
+        stroke-dashoffset: 89;
+    }
+}
+
 @keyframes percent90 {
     to {
         stroke-dashoffset: 90;
     }
 }
 
+@keyframes percent91 {
+    to {
+        stroke-dashoffset: 91;
+    }
+}
+
+@keyframes percent92 {
+    to {
+        stroke-dashoffset: 92;
+    }
+}
+
+@keyframes percent93 {
+    to {
+        stroke-dashoffset: 93;
+    }
+}
+
+@keyframes percent94 {
+    to {
+        stroke-dashoffset: 94;
+    }
+}
+
 @keyframes percent95 {
     to {
         stroke-dashoffset: 95;
+    }
+}
+
+@keyframes percent96 {
+    to {
+        stroke-dashoffset: 96;
+    }
+}
+
+@keyframes percent97 {
+    to {
+        stroke-dashoffset: 97;
+    }
+}
+
+@keyframes percent98 {
+    to {
+        stroke-dashoffset: 98;
+    }
+}
+
+@keyframes percent99 {
+    to {
+        stroke-dashoffset: 99;
     }
 }
 

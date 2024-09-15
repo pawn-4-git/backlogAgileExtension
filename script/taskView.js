@@ -33,16 +33,16 @@ function taskViewFuction() {
             }
         }
         if (closeCardCount > 0) {
-            totalPercent = roundToSpecificRule(closeCardCount * 100 / total);
+            totalPercent = Math.floor(closeCardCount * 100 / total);
         }
         for (let i = 0; i < list.length; i++) {
             let color = getIconColor(list[i]);
             let count = getTaskCount(list[i]);
             let title = gettitle(list[i]);
             if (title != '処理済み' && title != '完了' && count > 0) {
-                let percent = roundToSpecificRule(count * 100 / total);
-                if (percent < 5) {
-                    percent = 5;
+                let percent = Math.floor(count * 100 / total);
+                if (percent < 1) {
+                    percent = 1;
                 }
                 let circle = document.createElementNS(svg, 'circle');
                 circle.style.setProperty('stroke', color);
@@ -132,21 +132,4 @@ function gettitle(listItem) {
         });
     }
     return outputText;
-}
-
-function roundToSpecificRule(num) {
-    const onesPlace = num % 10;  // 1の位を取得
-    if (onesPlace >= 1 && onesPlace <= 2) {
-        // 1から2の場合は、1の位を0にする
-        return Math.floor(num / 10) * 10;
-    } else if (onesPlace >= 3 && onesPlace <= 7) {
-        // 3から7の場合は、1の位を5にする
-        return Math.floor(num / 10) * 10 + 5;
-    } else if (onesPlace >= 8 && onesPlace <= 9) {
-        // 8から9の場合は繰り上げて0にする
-        return Math.ceil(num / 10) * 10;
-    } else {
-        // 1の位が0の場合はそのまま返す
-        return Math.floor(num / 10) * 10;
-    }
 }
