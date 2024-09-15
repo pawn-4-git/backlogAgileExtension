@@ -32,12 +32,14 @@ function taskViewFuction() {
                 closeCardCount += count;
             }
         }
-        totalPercent = roundToSpecificRule(closeCardCount * 100 / total);
+        if (closeCardCount > 0) {
+            totalPercent = roundToSpecificRule(closeCardCount * 100 / total);
+        }
         for (let i = 0; i < list.length; i++) {
             let color = getIconColor(list[i]);
             let count = getTaskCount(list[i]);
             let title = gettitle(list[i]);
-            if (title != '処理済み' && title != '完了') {
+            if (title != '処理済み' && title != '完了' && count > 0) {
                 let percent = roundToSpecificRule(count * 100 / total);
                 if (percent < 5) {
                     percent = 5;
