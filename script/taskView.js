@@ -8,8 +8,6 @@ function taskViewFuction() {
     taskViewDiv.classList.add('taskViewDiv');
     let taskCircle = document.createElementNS(svg, "svg");
     taskCircle.classList.add('circleView');
-    taskCircle.display = 'none'
-    viewBox = "0 0 64 64"
     viewBox = "0 0 64 64"
     const cx = '50%';
     const cy = '50%';
@@ -92,7 +90,7 @@ function getList() {
 
 function getIconColor(listItem) {
     const icon = listItem.querySelectorAll('.StatusIcon');
-    if (icon != null && icon != undefined) {
+    if (icon) {
         return getComputedStyle(icon[0]).backgroundColor;
     }
     return null;
