@@ -51,7 +51,7 @@ function taskViewFuction() {
                 circle.setAttribute('r', r);
                 taskCircle.appendChild(circle);
                 if (percent > 0) {
-                    text = text + '<span class="taskDiscription" style="color:' + color + ';">' + title + '・・・' + percent + "%</span><br/>"
+                    text = text + '<span class="taskDiscription" style="color:' + color + ';">' + title + '・・・' + Math.floor(count * 100 / total) + "%</span><br/>"
                 }
                 totalPercent += roundToSpecificRule(count * 100 / total);
 
