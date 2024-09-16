@@ -29,7 +29,7 @@ function taskViewFuction() {
             let title = gettitle(list[i]);
             if (title === '処理済み' || title === '完了') {
                 closeCardCount += count;
-            } else {
+            } else if (count > 0) {
                 let percent = Math.floor(count * 100 / total);
                 if (percent < 1) {
                     percent = 1;
