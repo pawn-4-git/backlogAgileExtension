@@ -331,11 +331,22 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
           taskViewFuction();
         });
         fileter.appendChild(taskViewButtonElement);
+        taskViewButtonElement.addEventListener('mouseenter', (event) => {
+          const button = document.getElementById('taskViewButton');
+          if (button.disabled) {
+            categoryElement.classList.add('selectCategoryAlert');
+          }
+        });
+
+        taskViewButtonElement.addEventListener('mouseleave', () => {
+          categoryElement.classList.remove('selectCategoryAlert')
+        });
+
+
       }
       let taskViewButton = document.getElementById("taskViewButton");
       if (selectCheck && taskViewButton != null) {
         taskViewButton.disabled = false;
-
       } else {
         taskViewButton.disabled = true;
       }
