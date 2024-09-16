@@ -313,7 +313,7 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
 
         let taskViewButtonElement = document.createElement("button");
         let taskViewButtonTextElement = document.createElement("span");
-        taskViewButtonTextElement.textContent = "状態確認";
+        taskViewButtonTextElement.textContent = "状況確認";
         taskViewButtonTextElement.classList.add('_assistive-text');
         taskViewButtonElement.id = "taskViewButton";
         taskViewButtonElement.type = "button";
