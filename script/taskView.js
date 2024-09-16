@@ -22,18 +22,26 @@ function taskViewFuction() {
         let text = '';
         let closeCardCount = 0;
         let totalPercent = 100;
-        let totalCardCount = total;
         //完了したタスクの数を整理
+        let notClosePercent = 0;
         for (let i = 0; i < list.length; i++) {
-            let color = getIconColor(list[i]);
             let count = getTaskCount(list[i]);
             let title = gettitle(list[i]);
             if (title === '処理済み' || title === '完了') {
                 closeCardCount += count;
+            } else {
+                let percent = Math.floor(count * 100 / total);
+                if (percent < 1) {
+                    percent = 1;
+                }
+                notClosePercent += percent;
             }
         }
         if (closeCardCount > 0) {
-            totalPercent = Math.floor(closeCardCount * 100 / total);
+            totalPercent = 100 - notClosePercent;
+            if (totalPercent < 0) {
+                totalPercent = 0;
+            }
         }
         for (let i = 0; i < list.length; i++) {
             let color = getIconColor(list[i]);
@@ -56,11 +64,13 @@ function taskViewFuction() {
                     text = text + '<span class="taskDiscription" style="color:' + color + ';">' + title + '・・・' + Math.floor(count * 100 / total) + "%</span><br/>"
                 }
                 totalPercent += percent;
+                if (totalPercent > 100) {
+                    totalPercent = 100;
+                }
 
             }
             console.log(gettitle(list[i]));
         }
-
         const animate = document.createElementNS(svg, "animate");
         animate.setAttribute("attributeName", "r");
         animate.setAttribute("from", "50");
