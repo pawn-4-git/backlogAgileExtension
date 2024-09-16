@@ -130,3 +130,7 @@
 .taskDiscription {
   font-weight: bold;
 }
+
+.selectCategoryAlert {
+  color: red;
+}
