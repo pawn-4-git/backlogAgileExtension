@@ -42,6 +42,8 @@ function taskViewFuction() {
             if (totalPercent < 0) {
                 totalPercent = 0;
             }
+        } else {
+            totalPercent = 0;
         }
         for (let i = 0; i < list.length; i++) {
             let color = getIconColor(list[i]);
@@ -134,7 +136,7 @@ function gettitle(listItem) {
         childNode.forEach(node => {
             if (!node.classList.contains('expand')) {
                 let text = node.innerText;
-                text = text.replace(/予定:\d+\/実績:\d+/g, '');
+                text = text.replace(/予定:([\d.]+)\/実績:([\d.]+)/g, '');
                 if (text.length > 0) {
                     outputText = outputText + text;
                 }
