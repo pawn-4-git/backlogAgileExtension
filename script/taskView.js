@@ -1,4 +1,5 @@
 function taskViewFuction() {
+
     const svg = "http://www.w3.org/2000/svg";
     let dialog = document.getElementById("categoryTaskDialog");
     dialog.innerHTML = '';
@@ -11,7 +12,7 @@ function taskViewFuction() {
     viewBox = "0 0 64 64"
     const cx = '50%';
     const cy = '50%';
-    const r = '15.9154';
+    const r = 100 / (2 * Math.PI);
     taskCircle.setAttributeNS(null, 'viewBox', '0 0 64 64');
     const list = getList();
     let total = getTotalTaskCount(list);
