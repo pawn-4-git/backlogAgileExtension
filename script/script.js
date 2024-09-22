@@ -353,7 +353,6 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
 
     });
   }
-
   // 一定時間ごとに関数を呼び出すタイマーを設定
   setInterval(boardFunction, 5000); // 5000ミリ秒ごとに関数が実行される
 }

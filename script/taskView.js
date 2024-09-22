@@ -2,11 +2,14 @@ function taskViewFuction() {
 
     const svg = "http://www.w3.org/2000/svg";
     let dialog = document.getElementById("categoryTaskDialog");
-    dialog.innerHTML = '';
+    //dialog.innerHTML = '';
+    if (document.getElementById('notCloseTask') != null) {
+        document.getElementById('notCloseTask').remove();
+    }
     let taskDiv = document.createElement("div");
+    taskDiv.innerHTML = '';
     taskDiv.style.setProperty('display', 'flex')
-    let taskViewDiv = document.createElement("div");
-    taskViewDiv.classList.add('taskViewDiv');
+    taskDiv.id = 'notCloseTask';
     let taskCircle = document.createElementNS(svg, "svg");
     taskCircle.classList.add('circleView');
     viewBox = "0 0 64 64"
@@ -14,11 +17,18 @@ function taskViewFuction() {
     const cy = '50%';
     const r = 100 / (2 * Math.PI);
     taskCircle.setAttributeNS(null, 'viewBox', '0 0 64 64');
+    if (document.getElementById('taskDialogTitle') == null) {
+        let taskTitleDiv = document.createElement("h2");
+        taskTitleDiv.innerText = "状況確認(課題数)"
+        taskTitleDiv.id = 'taskDialogTitle';
+        categoryTaskDialog.appendChild(taskTitleDiv);
+    }
+
+    let taskViewDiv = document.createElement("div");
+    taskViewDiv.classList.add('taskViewDiv');
+    taskViewDiv.id = 'taskViewCircle';
     const list = getList();
     let total = getTotalTaskCount(list);
-    let taskTitleDiv = document.createElement("h2");
-    taskTitleDiv.innerText = "状況確認(課題数)"
-    categoryTaskDialog.appendChild(taskTitleDiv);
     if (total > 0) {
         let text = '';
         let closeCardCount = 0;
@@ -47,12 +57,37 @@ function taskViewFuction() {
             totalPercent = 0;
         }
         if (notClosePercent > 0) {
+            let ajust = 0;
+            if (closeCardCount == 0 && notClosePercent != 100) {
+                ajust = 100 - notClosePercent;
+            }
+            if (document.getElementById('taskCloseCheck') == null) {
+                let checkbox = document.createElement('label');
+                checkbox.classList.add('custom-checkbox');
+                checkbox.innerText = '完了および処理済み除く';
+                checkbox.id = 'closeTaskCheckbox';
+                let checkboxinput = document.createElement('input');
+                checkboxinput.type = 'checkbox';
+                checkboxinput.id = 'taskCloseCheck';
+                checkboxinput.addEventListener('change', function () {
+                    taskViewFuction();
+                });
+                checkbox.appendChild(checkboxinput);
+                let checkboxSpan = document.createElement('span');
+                checkboxSpan.classList.add('checkmark');
+                checkbox.appendChild(checkboxSpan);
+                categoryTaskDialog.appendChild(checkbox);
+            }
+            if (document.getElementById('taskCloseCheck').checked) {
+                total = total - closeCardCount;
+                totalPercent = 0;
+            }
             for (let i = 0; i < list.length; i++) {
                 let color = getIconColor(list[i]);
                 let count = getTaskCount(list[i]);
                 let title = gettitle(list[i]);
                 if (title != '処理済み' && title != '完了' && count > 0) {
-                    let percent = Math.floor(count * 100 / total);
+                    let percent = Math.floor(count * 100 / total) + ajust;
                     if (percent < 1) {
                         percent = 1;
                     }
@@ -65,12 +100,13 @@ function taskViewFuction() {
                     circle.setAttribute('r', r);
                     taskCircle.appendChild(circle);
                     if (percent > 0) {
-                        text = text + '<span class="taskDiscription" style="color:' + color + ';">' + title + '・・・' + Math.floor(count * 100 / total) + "%</span><br/>"
+                        text = text + '<span class="taskDiscription" style="color:' + color + ';">' + title + '・・・' + percent + "%</span><br/>"
                     }
                     totalPercent += percent;
                     if (totalPercent > 100) {
                         totalPercent = 100;
                     }
+                    ajust = 0;
 
                 }
                 console.log(gettitle(list[i]));
@@ -94,13 +130,13 @@ function taskViewFuction() {
             animate.beginElement();
         } else {
             let taskDataDiv = document.createElement("div");
-            taskDataDiv.innerText = "課題がありません"
+            taskDataDiv.innerText = "未完了の課題はありません"
             taskDiv.appendChild(taskDataDiv);
             categoryTaskDialog.appendChild(taskDiv);
         }
     } else {
         let taskDataDiv = document.createElement("div");
-        taskDataDiv.innerText = "課題がありません"
+        taskDataDiv.innerText = "未完了の課題はありません"
         taskDiv.appendChild(taskDataDiv);
         categoryTaskDialog.appendChild(taskDiv);
     }
