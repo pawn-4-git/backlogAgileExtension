@@ -2,7 +2,6 @@ function taskViewFuction() {
 
     const svg = "http://www.w3.org/2000/svg";
     let dialog = document.getElementById("categoryTaskDialog");
-    //dialog.innerHTML = '';
     if (document.getElementById('notCloseTask') != null) {
         document.getElementById('notCloseTask').remove();
     }
