@@ -21,7 +21,7 @@ function taskViewFuction() {
         let taskTitleDiv = document.createElement("h2");
         taskTitleDiv.innerText = "状況確認(課題数)"
         taskTitleDiv.id = 'taskDialogTitle';
-        categoryTaskDialog.appendChild(taskTitleDiv);
+        dialog.appendChild(taskTitleDiv);
     }
 
     let taskViewDiv = document.createElement("div");
@@ -76,7 +76,7 @@ function taskViewFuction() {
                 let checkboxSpan = document.createElement('span');
                 checkboxSpan.classList.add('checkmark');
                 checkbox.appendChild(checkboxSpan);
-                categoryTaskDialog.appendChild(checkbox);
+                dialog.appendChild(checkbox);
             }
             if (document.getElementById('taskCloseCheck').checked) {
                 total = total - closeCardCount;
@@ -125,20 +125,20 @@ function taskViewFuction() {
             taskDataDiv.innerHTML = text
             taskDiv.appendChild(taskDataDiv);
 
-            categoryTaskDialog.appendChild(taskDiv);
+            dialog.appendChild(taskDiv);
             taskCircle.display = 'block'
             animate.beginElement();
         } else {
             let taskDataDiv = document.createElement("div");
             taskDataDiv.innerText = "未完了の課題はありません"
             taskDiv.appendChild(taskDataDiv);
-            categoryTaskDialog.appendChild(taskDiv);
+            dialog.appendChild(taskDiv);
         }
     } else {
         let taskDataDiv = document.createElement("div");
         taskDataDiv.innerText = "未完了の課題はありません"
         taskDiv.appendChild(taskDataDiv);
-        categoryTaskDialog.appendChild(taskDiv);
+        dialog.appendChild(taskDiv);
     }
     dialog.showModal();
 }
