@@ -36,7 +36,7 @@ function taskViewFuction() {
         let notClosePercent = 0;
         for (let i = 0; i < list.length; i++) {
             let count = getTaskCount(list[i]);
-            let title = gettitle(list[i]);
+            let title = getTitle(list[i]);
             if (title === '処理済み' || title === '完了') {
                 closeCardCount += count;
             } else if (count > 0) {
@@ -170,7 +170,7 @@ function getTaskCount(listItem) {
     return filterd.length;
 }
 
-function gettitle(listItem) {
+function getTitle(listItem) {
     const head = listItem.querySelectorAll('.SlotHead');
     let outputText = '';
     if (head != null && head != undefined) {
