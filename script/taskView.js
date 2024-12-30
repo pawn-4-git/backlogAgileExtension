@@ -23,7 +23,7 @@ function taskViewFuction() {
 
     if (document.getElementById('taskDialogTitle') == null) {
         let taskTitleDiv = document.createElement("h2");
-        taskTitleDiv.innerText = "状況確認(課題数)"
+        taskTitleDiv.innerText = "状況確認"
         taskTitleDiv.id = 'taskDialogTitle';
         dialog.appendChild(taskTitleDiv);
     }
