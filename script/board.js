@@ -273,7 +273,7 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
             let categorytaskDialogExist = document.getElementById("categoryTaskDialog");
             let categoryTaskDialog = document.createElement("dialog");
             categoryTaskDialog.id = "categoryTaskDialog";
-            categoryTaskDialog.classList.add('categoryDialog');
+            //categoryTaskDialog.classList.add('categoryDialog');
             //範囲外をクリックしたらDialogを閉じる
             categoryTaskDialog.addEventListener("click", function (event) {
                 const dialogRect = categoryTaskDialog.getBoundingClientRect();

@@ -37,6 +37,7 @@ function taskViewFuction() {
     const list = getList();
     let total = getTotalTaskCount(list);
     let totalW = getTotalEstimatedCount(list);
+    let wExistCheck = false;
     if (total > 0) {
         let text = '';
         let closeCardCount = 0;
@@ -156,6 +157,7 @@ function taskViewFuction() {
                         text = text + '<span class="taskDiscription" style="color:' + color + ';">' + title + ' 課題数:' + percent + "%</span><br/>"
                     } else if (percent > 0 && wcount != 0) {
                         text = text + '<span class="taskDiscription" style="color:' + color + ';">' + title + ' 課題数:' + percent + "%(実績/予定 " + wacount + "/" + wcount + ")</span><br/>"
+                        wExistCheck = true;
                     }
                     totalPercent += percent;
                     if (totalPercent > 100) {
@@ -190,13 +192,14 @@ function taskViewFuction() {
 
             taskViewDiv.appendChild(taskCircle);
             taskDiv.appendChild(taskViewDiv)
-
-            const titleTagW = document.createElement("div");
-            titleTagW.textContent = "予定進捗状況";
-            titleTagW.classList.add('container-title');
-            taskWViewDiv.appendChild(titleTagW);
-            taskWViewDiv.appendChild(taskWCircle);
-            taskDiv.appendChild(taskWViewDiv);
+            if (wExistCheck) {
+                const titleTagW = document.createElement("div");
+                titleTagW.textContent = "予定進捗状況";
+                titleTagW.classList.add('container-title');
+                taskWViewDiv.appendChild(titleTagW);
+                taskWViewDiv.appendChild(taskWCircle);
+                taskDiv.appendChild(taskWViewDiv);
+            }
             let taskDataDiv = document.createElement("div");
             taskDataDiv.innerHTML = text
             taskDiv.appendChild(taskDataDiv);
@@ -215,6 +218,13 @@ function taskViewFuction() {
         taskDataDiv.innerText = "未完了の課題はありません"
         taskDiv.appendChild(taskDataDiv);
         dialog.appendChild(taskDiv);
+    }
+    if (wExistCheck) {
+        dialog.classList.remove('categoryDialogMini');
+        dialog.classList.add('categoryDialog');
+    } else {
+        dialog.classList.remove('categoryDialog');
+        dialog.classList.add('categoryDialogMini');
     }
     dialog.showModal();
 }
