@@ -192,7 +192,7 @@ function taskViewFuction() {
             taskDiv.appendChild(taskViewDiv)
 
             const titleTagW = document.createElement("div");
-            titleTagW.textContent = "進捗状況";
+            titleTagW.textContent = "予定進捗状況";
             titleTagW.classList.add('container-title');
             taskWViewDiv.appendChild(titleTagW);
             taskWViewDiv.appendChild(taskWCircle);
