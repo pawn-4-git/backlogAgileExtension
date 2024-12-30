@@ -2,7 +2,7 @@
   "name": "Backlogアジャイル開発用拡張機能",
   "author": "pawn",
   "description": "Backlogのボードでアジャイル開発のストーリポイントを表示するための拡張機能",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "manifest_version": 3,
   "icons": {
     "48": "images/31_Good-job_e.png"
@@ -19,7 +19,8 @@
       ],
       "js": [
         "script/taskView.js",
-        "script/script.js"
+        "script/util.js",
+        "script/board.js"
       ],
       "type": "module"
     },
