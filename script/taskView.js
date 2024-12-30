@@ -184,7 +184,6 @@ function taskViewFuction() {
             taskCircle.appendChild(animate);
 
             //タイトル
-            // <title>タグを作成
             const titleTag = document.createElement("div");
             titleTag.textContent = "課題数";
             titleTag.classList.add('container-title');
