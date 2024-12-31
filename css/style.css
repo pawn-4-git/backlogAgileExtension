@@ -102,8 +102,13 @@
 }
 
 .categoryDialog {
-  height: 300px;
-  width: 500px;
+  height: 320px;
+  width: 700px;
+}
+
+.categoryDialogMini {
+  height: 320px;
+  width: 400px;
 }
 
 .taskViewDiv {
@@ -198,4 +203,9 @@
   border: solid white;
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
+}
+
+.container-title {
+  font-size: 16px;
+  font-weight: bold;
 }
