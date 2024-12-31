@@ -7,10 +7,6 @@
   "icons": {
     "48": "images/31_Good-job_e.png"
   },
-  "permissions": [
-    "tabs",
-    "activeTab"
-  ],
   "content_scripts": [
     {
       "matches": [
