@@ -223,16 +223,7 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
                 accountFilterDialog.close();
             });
             accountFilterDialog.appendChild(accountFilterCloseButton);
-            //範囲外をクリックしたらDialogを閉じる
-            accountFilterDialog.addEventListener("click", function (event) {
-                const dialogRect = accountFilterDialog.getBoundingClientRect();
-                if (event.clientX < dialogRect.left
-                    || event.clientX > dialogRect.right
-                    || event.clientY < dialogRect.top
-                    || event.clientY > dialogRect.bottom) {
-                    accountFilterDialog.close();
-                }
-            });
+            accountFilterDialog.setAttribute("closedby", "any");
 
             let fileter = document.getElementById("filterButton").parentNode;
             let accountFilterButton = document.getElementById("accountFilterDialog");
@@ -273,17 +264,7 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
             let categorytaskDialogExist = document.getElementById("categoryTaskDialog");
             let categoryTaskDialog = document.createElement("dialog");
             categoryTaskDialog.id = "categoryTaskDialog";
-            //categoryTaskDialog.classList.add('categoryDialog');
-            //範囲外をクリックしたらDialogを閉じる
-            categoryTaskDialog.addEventListener("click", function (event) {
-                const dialogRect = categoryTaskDialog.getBoundingClientRect();
-                if (event.clientX < dialogRect.left
-                    || event.clientX > dialogRect.right
-                    || event.clientY < dialogRect.top
-                    || event.clientY > dialogRect.bottom) {
-                    categoryTaskDialog.close();
-                }
-            });
+            categoryTaskDialog.setAttribute("closedby", "any");
 
             if (fileter != null && categorytaskDialogExist == null) {
                 fileter.appendChild(categoryTaskDialog);
