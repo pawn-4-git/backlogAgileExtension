@@ -228,19 +228,6 @@ function taskViewFuction() {
     dialog.showModal();
 }
 
-function getList() {
-    const elements = document.querySelectorAll('.css-hrpltn-col');
-    return elements;
-}
-
-function getIconColor(listItem) {
-    const icon = listItem.querySelectorAll('.StatusIcon');
-    if (icon) {
-        return getComputedStyle(icon[0]).backgroundColor;
-    }
-    return null;
-}
-
 function getTotalTaskCount(list) {
     let total = 0;
     list.forEach(item => {
@@ -257,62 +244,4 @@ function getTotalEstimatedCount(list) {
     });
 
     return total;
-}
-
-function getTaskCount(listItem) {
-    const cards = listItem.querySelectorAll('.card');
-    const filterd = Array.from(cards).filter(card => !card.classList.contains('cardFilter'));
-    return filterd.length;
-}
-
-function getEstimatedCount(listItem) {
-    const cards = listItem.querySelectorAll('.card');
-    const filterd = Array.from(cards).filter(card => !card.classList.contains('cardFilter'));
-    let value = 0;
-    filterd.forEach(
-        item => {
-            const title = item.querySelectorAll('.card-summary');
-            if (title.length == 1) {
-                let ev = estimatedExtractNumberInParentheses(title[0].innerText);
-                if (ev > 0) {
-                    value = value + ev;
-                }
-            }
-        });
-    return value;
-}
-
-function getActualCount(listItem) {
-    const cards = listItem.querySelectorAll('.card');
-    const filterd = Array.from(cards).filter(card => !card.classList.contains('cardFilter'));
-    let value = 0;
-    filterd.forEach(
-        item => {
-            const title = item.querySelectorAll('.card-summary');
-            if (title.length == 1) {
-                let ev = actualExtractNumberInParentheses(title[0].innerText);
-                if (ev > 0) {
-                    value = value + ev;
-                }
-            }
-        });
-    return value;
-}
-
-function getTitle(listItem) {
-    const head = listItem.querySelectorAll('.SlotHead');
-    let outputText = '';
-    if (head != null && head != undefined) {
-        const childNode = head[0].childNodes;
-        childNode.forEach(node => {
-            if (!node.classList.contains('expand')) {
-                let text = node.innerText;
-                text = text.replace(/予定:([\d.]+)\/実績:([\d.]+)/g, '');
-                if (text.length > 0) {
-                    outputText = outputText + text;
-                }
-            }
-        });
-    }
-    return outputText;
 }
