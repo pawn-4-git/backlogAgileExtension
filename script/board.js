@@ -4,6 +4,10 @@ const safetyLevel = "lightblue";
 const warningLevel = "khaki";
 const dangerLevel = "lightcoral";
 
+const typeEstimate = 1;
+const typeActual = 2;
+
+
 function getSelectedAccount() {
     let selectElement = document.getElementById('accountListSelect');
     let selectedValues = [];
@@ -367,6 +371,14 @@ function getTitle(listItem) {
 }
 
 function getEstimatedCount(listItem) {
+    return getEstimateOrActual(listItem, typeEstimate);
+}
+
+function getActualCount(listItem) {
+    return getEstimateOrActual(listItem, typeActual);
+}
+
+function getEstimateOrActual(listItem, type) {
     const cards = listItem.querySelectorAll('.card');
     const filterd = Array.from(cards).filter(card => !card.classList.contains('cardFilter'));
     let value = 0;
@@ -374,31 +386,20 @@ function getEstimatedCount(listItem) {
         item => {
             const title = item.querySelectorAll('.card-summary');
             if (title.length == 1) {
-                let ev = estimatedExtractNumberInParentheses(title[0].innerText);
-                if (ev > 0) {
-                    value = value + ev;
+                let v = 0;
+                if (type == typeEstimate) {
+                    v = estimatedExtractNumberInParentheses(title[0].innerText);
+                } else if (type == typeActual) {
+                    v = actualExtractNumberInParentheses(title[0].innerText);
+                }
+                if (v > 0) {
+                    value = value + v;
                 }
             }
         });
     return value;
 }
 
-function getActualCount(listItem) {
-    const cards = listItem.querySelectorAll('.card');
-    const filterd = Array.from(cards).filter(card => !card.classList.contains('cardFilter'));
-    let value = 0;
-    filterd.forEach(
-        item => {
-            const title = item.querySelectorAll('.card-summary');
-            if (title.length == 1) {
-                let ev = actualExtractNumberInParentheses(title[0].innerText);
-                if (ev > 0) {
-                    value = value + ev;
-                }
-            }
-        });
-    return value;
-}
 
 function getIconColor(listItem) {
     const icon = listItem.querySelectorAll('.StatusIcon');
