@@ -402,7 +402,7 @@ function getActualCount(listItem) {
 
 function getIconColor(listItem) {
     const icon = listItem.querySelectorAll('.StatusIcon');
-    if (icon) {
+    if (icon?.[0]) {
         return getComputedStyle(icon[0]).backgroundColor;
     }
     return null;
