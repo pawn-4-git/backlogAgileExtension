@@ -351,14 +351,14 @@ function getTitle(listItem) {
 }
 
 function getEstimatedCount(listItem) {
-    return getEstimateOrActual(listItem, typeEstimate);
+    return calculateEstimateOrActual(listItem, typeEstimate);
 }
 
 function getActualCount(listItem) {
-    return getEstimateOrActual(listItem, typeActual);
+    return calculateEstimateOrActual(listItem, typeActual);
 }
 
-function getEstimateOrActual(listItem, type) {
+function calculateEstimateOrActual(listItem, type) {
     const cards = listItem.querySelectorAll('.card');
     const filterd = Array.from(cards).filter(card => !card.classList.contains('cardFilter'));
     let value = 0;

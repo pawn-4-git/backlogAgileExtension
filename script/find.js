@@ -63,10 +63,10 @@ function getTitle(listItem) {
 }
 
 function getEstimatedCount(listItem) {
-    return getEstimateOrActual(listItem, typeEstimate);
+    return calculateEstimateOrActual(listItem, typeEstimate);
 }
 
-function getEstimateOrActual(listItem, type) {
+function calculateEstimateOrActual(listItem, type) {
     let statusList = getStatusList();
     let value = 0;
     for (let i = 0; i < statusList.length; i++) {
@@ -94,7 +94,7 @@ function getEstimateOrActual(listItem, type) {
 }
 
 function getActualCount(listItem) {
-    return getEstimateOrActual(listItem, typeActual);
+    return calculateEstimateOrActual(listItem, typeActual);
 }
 
 function getTaskCount(listItem) {
