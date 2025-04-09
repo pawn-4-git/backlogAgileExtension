@@ -4,6 +4,10 @@ const safetyLevel = "lightblue";
 const warningLevel = "khaki";
 const dangerLevel = "lightcoral";
 
+const typeEstimate = 1;
+const typeActual = 2;
+
+
 function getSelectedAccount() {
     let selectElement = document.getElementById('accountListSelect');
     let selectedValues = [];
@@ -317,22 +321,70 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
 
 console.log(url);
 
-function estimatedExtractNumberInParentheses(str) {
-    const regex = /\(([\d.]+)\)/;
-    let match = str.match(regex);
-    if (match) {
-        let numberInParentheses = parseFloat(match[1]);
-        return numberInParentheses;
-    }
-    return -1;
+function getList() {
+    const elements = document.querySelectorAll('.css-hrpltn-col');
+    return elements;
 }
-function actualExtractNumberInParentheses(str) {
-    const regex = /\[([\d.]+)\]/;
-    let match = str.match(regex);
 
-    if (match) {
-        let numberInParentheses = parseFloat(match[1]);
-        return numberInParentheses;
+function getTaskCount(listItem) {
+    const cards = listItem.querySelectorAll('.card');
+    const filterd = Array.from(cards).filter(card => !card.classList.contains('cardFilter'));
+    return filterd.length;
+}
+
+function getTitle(listItem) {
+    const head = listItem.querySelectorAll('.SlotHead');
+    let outputText = '';
+    if (head && head.length > 0) {
+        const childNode = head[0].childNodes;
+        childNode.forEach(node => {
+            if (!node.classList.contains('expand')) {
+                let text = node.innerText;
+                text = text.replace(/予定:([\d.]+)\/実績:([\d.]+)/g, '');
+                if (text.length > 0) {
+                    outputText = outputText + text;
+                }
+            }
+        });
     }
-    return -1;
+    return outputText;
+}
+
+function getEstimatedCount(listItem) {
+    return calculateEstimateOrActual(listItem, typeEstimate);
+}
+
+function getActualCount(listItem) {
+    return calculateEstimateOrActual(listItem, typeActual);
+}
+
+function calculateEstimateOrActual(listItem, type) {
+    const cards = listItem.querySelectorAll('.card');
+    const filterd = Array.from(cards).filter(card => !card.classList.contains('cardFilter'));
+    let value = 0;
+    filterd.forEach(
+        item => {
+            const title = item.querySelectorAll('.card-summary');
+            if (title.length == 1) {
+                let v = 0;
+                if (type == typeEstimate) {
+                    v = estimatedExtractNumberInParentheses(title[0].innerText);
+                } else if (type == typeActual) {
+                    v = actualExtractNumberInParentheses(title[0].innerText);
+                }
+                if (v > 0) {
+                    value = value + v;
+                }
+            }
+        });
+    return value;
+}
+
+
+function getIconColor(listItem) {
+    const icon = listItem.querySelectorAll('.StatusIcon');
+    if (icon?.[0]) {
+        return getComputedStyle(icon[0]).backgroundColor;
+    }
+    return null;
 }
