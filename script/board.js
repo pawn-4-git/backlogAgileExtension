@@ -335,7 +335,7 @@ function getTaskCount(listItem) {
 function getTitle(listItem) {
     const head = listItem.querySelectorAll('.SlotHead');
     let outputText = '';
-    if (head != null && head != undefined) {
+    if (head && head.length > 0) {
         const childNode = head[0].childNodes;
         childNode.forEach(node => {
             if (!node.classList.contains('expand')) {

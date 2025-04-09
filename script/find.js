@@ -3,7 +3,6 @@ const url = location.href;
 const typeEstimate = 1;
 const typeActual = 2;
 
-
 if (url.indexOf('backlog.jp/find/') != -1 || url.indexOf('backlog.com/find/') != -1) {
     function findFunction() {
         let taskViewButton = document.getElementById("taskViewButton");
