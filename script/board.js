@@ -321,26 +321,6 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
 
 console.log(url);
 
-function estimatedExtractNumberInParentheses(str) {
-    const regex = /\(([\d.]+)\)/;
-    let match = str.match(regex);
-    if (match) {
-        let numberInParentheses = parseFloat(match[1]);
-        return numberInParentheses;
-    }
-    return -1;
-}
-function actualExtractNumberInParentheses(str) {
-    const regex = /\[([\d.]+)\]/;
-    let match = str.match(regex);
-
-    if (match) {
-        let numberInParentheses = parseFloat(match[1]);
-        return numberInParentheses;
-    }
-    return -1;
-}
-
 function getList() {
     const elements = document.querySelectorAll('.css-hrpltn-col');
     return elements;
