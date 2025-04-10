@@ -35,6 +35,38 @@ if (url.indexOf('backlog.jp/find/') != -1 || url.indexOf('backlog.com/find/') !=
             resultsSetControllerAction.appendChild(categoryTaskDialog);
 
         }
+        let totalEstimateAndActual = document.getElementById("total-estimate-and-actual");
+        if (totalEstimateAndActual == null) {
+            //result-set__controller-pagerをClass名で取得して最初の要素を取得
+            let resultsSetControllerPager = document.getElementsByClassName("result-set__controller-pager");
+            //resultsSetControllerPagerが存在していることの確認
+            if (resultsSetControllerPager.length > 0) {
+                //resultsSetControllerPagerの最初の要素を取得
+                let firstElement = resultsSetControllerPager[0];
+                // <span class="pager__info" style="
+                //  margin-left: 10px;
+                //  font-size: 15px;
+                //  font-weight: bold;
+                //">予定1/実績2</span>
+                //span要素を生成する
+                totalEstimateAndActual = document.createElement("span");
+                totalEstimateAndActual.classList.add("find-estimate-actual-count");
+                totalEstimateAndActual.id = "total-estimate-and-actual";
+                firstElement.appendChild(totalEstimateAndActual);
+            }
+        }
+        if (totalEstimateAndActual != null) {
+            //全ての要素を取得して予定と実績を取得する
+            let estimateValue = 0;
+            let actualValue = 0;
+            let list = getList();
+            list.forEach(item => {
+                estimateValue += getEstimatedCount(item);
+                actualValue += getActualCount(item);
+            }
+            );
+            totalEstimateAndActual.innerText = "予定:" + estimateValue + "/実績:" + actualValue;
+        }
 
     }
     setInterval(findFunction, 5000); // 5000ミリ秒ごとに関数が実行される
