@@ -43,11 +43,6 @@ if (url.indexOf('backlog.jp/find/') != -1 || url.indexOf('backlog.com/find/') !=
             if (resultsSetControllerPager.length > 0) {
                 //resultsSetControllerPagerの最初の要素を取得
                 let firstElement = resultsSetControllerPager[0];
-                // <span class="pager__info" style="
-                //  margin-left: 10px;
-                //  font-size: 15px;
-                //  font-weight: bold;
-                //">予定1/実績2</span>
                 //span要素を生成する
                 totalEstimateAndActual = document.createElement("span");
                 totalEstimateAndActual.classList.add("find-estimate-actual-count");
