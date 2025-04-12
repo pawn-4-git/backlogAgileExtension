@@ -7,7 +7,7 @@ if (url.indexOf('backlog.jp/find/') != -1 || url.indexOf('backlog.com/find/') !=
     function findFunction() {
         let taskViewButton = document.getElementById("taskViewButton");
         let resultsSetControllerActions = document.getElementsByClassName("result-set__controller-actions");
-        if (taskViewButton == null && resultsSetControllerActions != null) {
+        if (taskViewButton == null && resultsSetControllerActions != null && resultsSetControllerActions.length > 0) {
             let categoryTaskDialog = document.createElement("dialog");
             categoryTaskDialog.id = "categoryTaskDialog";
             categoryTaskDialog.setAttribute("closedby", "any");
@@ -65,6 +65,7 @@ if (url.indexOf('backlog.jp/find/') != -1 || url.indexOf('backlog.com/find/') !=
         }
 
     }
+
     setInterval(findFunction, 5000); // 5000ミリ秒ごとに関数が実行される
 }
 
