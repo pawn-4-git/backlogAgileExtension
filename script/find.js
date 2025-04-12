@@ -7,7 +7,7 @@ if (url.indexOf('backlog.jp/find/') != -1 || url.indexOf('backlog.com/find/') !=
     function findFunction() {
         let taskViewButton = document.getElementById("taskViewButton");
         let resultsSetControllerActions = document.getElementsByClassName("result-set__controller-actions");
-        if (taskViewButton == null && resultsSetControllerActions != null) {
+        if (taskViewButton == null && resultsSetControllerActions && resultsSetControllerActions.length > 0) {
             let categoryTaskDialog = document.createElement("dialog");
             categoryTaskDialog.id = "categoryTaskDialog";
             categoryTaskDialog.setAttribute("closedby", "any");
@@ -35,7 +35,8 @@ if (url.indexOf('backlog.jp/find/') != -1 || url.indexOf('backlog.com/find/') !=
             resultsSetControllerAction.appendChild(categoryTaskDialog);
 
         }
-        let totalEstimateAndActual = document.getElementById("total-estimate-and-actual");
+        const total_estimate_and_actual_id = "total-estimate-and-actual"
+        let totalEstimateAndActual = document.getElementById(total_estimate_and_actual_id);
         if (totalEstimateAndActual == null) {
             //result-set__controller-pagerをClass名で取得して最初の要素を取得
             let resultsSetControllerPager = document.getElementsByClassName("result-set__controller-pager");
@@ -46,7 +47,7 @@ if (url.indexOf('backlog.jp/find/') != -1 || url.indexOf('backlog.com/find/') !=
                 // findページの合計予定時間と実績時間を表示するspan要素を生成する
                 totalEstimateAndActual = document.createElement("span");
                 totalEstimateAndActual.classList.add("find-estimate-actual-count");
-                totalEstimateAndActual.id = "total-estimate-and-actual";
+                totalEstimateAndActual.id = total_estimate_and_actual_id;
                 firstElement.appendChild(totalEstimateAndActual);
             }
         }
@@ -64,6 +65,7 @@ if (url.indexOf('backlog.jp/find/') != -1 || url.indexOf('backlog.com/find/') !=
         }
 
     }
+
     setInterval(findFunction, 5000); // 5000ミリ秒ごとに関数が実行される
 }
 
