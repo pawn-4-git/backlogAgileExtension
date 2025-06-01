@@ -11,18 +11,6 @@ function handleAiCommentButtonClick() {
             aiSummaryButton.id = "aiSummaryButton";
             aiSummaryButton.type = "button";
             aiSummaryButton.textContent = "AI要約";
-            aiSummaryButton.style.position = "fixed";
-            aiSummaryButton.style.bottom = "20px";
-            aiSummaryButton.style.right = "20px";
-            aiSummaryButton.style.zIndex = "1000";
-            aiSummaryButton.style.padding = "10px 15px";
-            aiSummaryButton.style.backgroundColor = "#007bff";
-            aiSummaryButton.style.color = "white";
-            aiSummaryButton.style.border = "none";
-            aiSummaryButton.style.borderRadius = "5px";
-            aiSummaryButton.style.cursor = "pointer";
-            aiSummaryButton.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
-            aiSummaryButton.style.fontSize = "14px";
 
             aiSummaryButton.addEventListener("click", async function (event) { // asyncを追加
                 event.stopPropagation();
