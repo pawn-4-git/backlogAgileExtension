@@ -290,7 +290,7 @@ if (url.indexOf('backlog.jp/board/') != -1 || url.indexOf('backlog.com/board/') 
                 taskViewButtonElement.appendChild(taskViewButtonTextElement);
 
                 taskViewButtonElement.addEventListener("click", function () {
-                    taskViewFuction();
+                    taskViewFunction();
                 });
                 fileter.appendChild(taskViewButtonElement);
                 taskViewButtonElement.addEventListener('mouseenter', (event) => {
