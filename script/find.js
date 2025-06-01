@@ -5,6 +5,7 @@ const typeActual = 2;
 
 if (url.indexOf('backlog.jp/find/') != -1 || url.indexOf('backlog.com/find/') != -1) {
     function findFunction() {
+        console.log('test');
         let taskViewButton = document.getElementById("taskViewButton");
         let resultsSetControllerActions = document.getElementsByClassName("result-set__controller-actions");
         if (taskViewButton == null && resultsSetControllerActions && resultsSetControllerActions.length > 0) {
@@ -29,12 +30,13 @@ if (url.indexOf('backlog.jp/find/') != -1 || url.indexOf('backlog.com/find/') !=
             taskViewButtonElement.appendChild(taskViewButtonTextElement);
 
             taskViewButtonElement.addEventListener("click", function () {
-                taskViewFuction();
+                taskViewFunction();
             });
             resultsSetControllerAction.appendChild(taskViewButtonElement);
             resultsSetControllerAction.appendChild(categoryTaskDialog);
 
         }
+
         const total_estimate_and_actual_id = "total-estimate-and-actual"
         let totalEstimateAndActual = document.getElementById(total_estimate_and_actual_id);
         if (totalEstimateAndActual == null) {
