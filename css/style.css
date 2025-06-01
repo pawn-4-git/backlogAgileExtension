@@ -229,3 +229,22 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   font-size: 14px;
 }
+
+#aiSummaryBubble {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  z-index: 1001;
+  padding: 10px 15px;
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}

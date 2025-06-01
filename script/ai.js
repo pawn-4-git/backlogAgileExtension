@@ -19,22 +19,6 @@ function handleAiCommentButtonClick() {
                 if (!bubble) {
                     bubble = document.createElement("div");
                     bubble.id = "aiSummaryBubble";
-                    bubble.style.position = "fixed";
-                    bubble.style.bottom = "60px";
-                    bubble.style.right = "20px";
-                    bubble.style.zIndex = "1001";
-                    bubble.style.padding = "10px 15px";
-                    bubble.style.backgroundColor = "white";
-                    bubble.style.color = "black";
-                    bubble.style.border = "1px solid #ccc";
-                    bubble.style.borderRadius = "5px";
-                    bubble.style.boxShadow = "0 2px 8px rgba(0,0,0,0.2)";
-                    bubble.style.maxWidth = "300px";
-                    bubble.style.fontSize = "14px";
-                    bubble.style.lineHeight = "1.4";
-                    bubble.style.whiteSpace = "normal";
-                    bubble.style.wordWrap = "break-word";
-                    bubble.style.overflowWrap = "break-word";
                     bubble.textContent = "要約中..."; // 要約が完了するまで表示するメッセージ
 
                     document.body.appendChild(bubble);
