@@ -113,126 +113,7 @@ function taskViewFunction() {
                 checkboxSpan.classList.add('checkmark');
                 checkbox.appendChild(checkboxSpan);
                 dialog.appendChild(checkbox);
-
-                // AI要約ボタンをチェックボックスの右に追加
-                let aiSummaryButton = document.createElement('button');
-                aiSummaryButton.id = 'aiSummaryButton';
-                aiSummaryButton.textContent = 'AI要約';
-                aiSummaryButton.style.marginLeft = '10px';
-                aiSummaryButton.addEventListener('click', async () => {
-                    taskViewFunction()
-                    try {
-                        const storage = await new Promise((resolve) => {
-                            chrome.storage.local.get(['openaiApiKey', 'geminiApiKey', 'llmModel', 'geminiModel', 'aiType', 'summaryPrompt'], resolve);
-                        });
-                        const openaiApiKey = storage.openaiApiKey || '';
-                        const geminiApiKey = storage.geminiApiKey || '';
-                        const aiType = storage.aiType || 'chatgpt'; // デフォルトはchatgpt
-                        const openaiModel = storage.llmModel || 'gpt-3.5-turbo';
-                        const geminiModel = storage.geminiModel || 'gemini-pro'; // Geminiのデフォルトモデル
-                        let prompt = storage.summaryPrompt || '';
-
-                        let taskDescriptionsText = '';
-                        const taskDiscriptionEls = document.getElementsByClassName('taskDiscription');
-                        for (let i = 0; i < taskDiscriptionEls.length; i++) {
-                            taskDescriptionsText += taskDiscriptionEls[i].innerText + '\\n';
-                        }
-
-                        if (!prompt) {
-                            alert('要約プロンプトが設定されていません。');
-                            return;
-                        }
-
-                        prompt += '\\n' + taskDescriptionsText;
-
-                        let reply = '応答がありませんでした。';
-
-                        if (aiType === 'chatgpt') { // OpenAIサービスの場合
-                            if (!openaiApiKey) {
-                                alert('OpenAI APIキーが設定されていません。');
-                                return;
-                            }
-                            const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Authorization': 'Bearer ' + openaiApiKey
-                                },
-                                body: JSON.stringify({
-                                    model: openaiModel,
-                                    messages: [
-                                        { role: 'user', content: prompt }
-                                    ]
-                                })
-                            });
-
-                            if (!response.ok) {
-                                const errorData = await response.json();
-                                alert('OpenAI APIエラー: ' + (errorData.error?.message || response.statusText));
-                                return;
-                            }
-
-                            const data = await response.json();
-                            reply = data.choices?.[0]?.message?.content || '応答がありませんでした。';
-
-                        } else if (aiType === 'gemini') { // Geminiサービスの場合
-                            if (!geminiApiKey) {
-                                alert('Gemini APIキーが設定されていません。');
-                                return;
-                            }
-                            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${geminiModel}:generateContent?key=${geminiApiKey}`, {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    contents: [
-                                        {
-                                            parts: [
-                                                {
-                                                    text: prompt
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                })
-                            });
-
-                            if (!response.ok) {
-                                const errorData = await response.json();
-                                alert('Gemini APIエラー: ' + (errorData.error?.message || response.statusText));
-                                return;
-                            }
-
-                            const data = await response.json();
-                            reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '応答がありませんでした。';
-
-                        } else {
-                            alert('サポートされていないAIサービスです。');
-                            return;
-                        }
-
-                        // classがtaskDiscriptionの要素を一度消す
-                        const taskDiscriptionElements = document.getElementsByClassName('taskDiscription');
-                        while (taskDiscriptionElements.length > 0) {
-                            taskDiscriptionElements[0].parentNode.removeChild(taskDiscriptionElements[0]);
-                        }
-
-                        // レスポンスの文字列を表示
-                        const taskDiv = document.getElementById('notCloseTask');
-                        if (taskDiv) {
-                            const responseDiv = document.createElement('div');
-                            responseDiv.textContent = reply;
-                            responseDiv.style.whiteSpace = 'pre-wrap';
-                            taskDiv.appendChild(responseDiv);
-                        }
-                    } catch (error) {
-                        alert('AI要約処理中にエラーが発生しました: ' + error.message);
-                    }
-                });
-                dialog.appendChild(aiSummaryButton);
             }
-
             if (document.getElementById('taskCloseCheck').checked) {
                 total = total - closeCardCount;
                 totalPercent = 0;
@@ -291,7 +172,6 @@ function taskViewFunction() {
                     ajustW = 0;
 
                 }
-                console.log(getTitle(list[i]));
             }
             const animate = document.createElementNS(svg, "animate");
             animate.setAttribute("attributeName", "r");
@@ -331,16 +211,20 @@ function taskViewFunction() {
             taskDiv.appendChild(taskDataDiv);
             dialog.appendChild(taskDiv);
         }
-        if (wExistCheck) {
-            dialog.classList.remove('categoryDialogMini');
-            dialog.classList.add('categoryDialog');
-        } else {
-            dialog.classList.remove('categoryDialog');
-            dialog.classList.add('categoryDialogMini');
-        }
-
-        dialog.showModal();
+    } else {
+        let taskDataDiv = document.createElement("div");
+        taskDataDiv.innerText = "未完了の課題はありません"
+        taskDiv.appendChild(taskDataDiv);
+        dialog.appendChild(taskDiv);
     }
+    if (wExistCheck) {
+        dialog.classList.remove('categoryDialogMini');
+        dialog.classList.add('categoryDialog');
+    } else {
+        dialog.classList.remove('categoryDialog');
+        dialog.classList.add('categoryDialogMini');
+    }
+    dialog.showModal();
 }
 
 function getTotalTaskCount(list) {

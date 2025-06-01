@@ -98,7 +98,6 @@ async function summarizeIssueList() {
     if (!screenText || screenText.trim() === "") {
         return "エラー: 要約するための元のデータが取得できませんでした。";
     }
-    console.log("取得した画面テキスト:", screenText);
 
     // chrome.storage.localから設定値を取得
     const settings = await new Promise(resolve => {
@@ -164,7 +163,6 @@ async function summarizeIssueList() {
         }
 
         const data = await response.json();
-        console.log("API応答データ:", data);
 
         let summaryResult = "要約結果を取得できませんでした。";
         if (aiType === 'chatgpt' && data.choices && data.choices.length > 0) {

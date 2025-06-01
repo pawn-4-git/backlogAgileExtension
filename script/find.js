@@ -5,7 +5,6 @@ const typeActual = 2;
 
 if (url.indexOf('backlog.jp/find/') != -1 || url.indexOf('backlog.com/find/') != -1) {
     function findFunction() {
-        console.log('test');
         let taskViewButton = document.getElementById("taskViewButton");
         let resultsSetControllerActions = document.getElementsByClassName("result-set__controller-actions");
         if (taskViewButton == null && resultsSetControllerActions && resultsSetControllerActions.length > 0) {
