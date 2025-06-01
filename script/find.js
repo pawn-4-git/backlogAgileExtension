@@ -35,6 +35,7 @@ if (url.indexOf('backlog.jp/find/') != -1 || url.indexOf('backlog.com/find/') !=
             resultsSetControllerAction.appendChild(categoryTaskDialog);
 
         }
+
         const total_estimate_and_actual_id = "total-estimate-and-actual"
         let totalEstimateAndActual = document.getElementById(total_estimate_and_actual_id);
         if (totalEstimateAndActual == null) {

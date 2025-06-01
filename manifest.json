@@ -1,9 +1,26 @@
 {
-  "name": "Backlogアジャイル開発用拡張機能",
+  "name": "Backlogアジャイル開発用拡張機能+AI",
   "author": "pawn",
-  "description": "Backlogのボードでアジャイル開発のストーリポイントを表示するための拡張機能",
-  "version": "1.6.0",
+  "description": "Backlogのボードでアジャイル開発のストーリポイントを表示するための拡張機能。AIによる集約などを機能がある",
+  "version": "1.0.0",
   "manifest_version": 3,
+  "permissions": [
+    "storage"
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "script/options.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
   "icons": {
     "48": "images/31_Good-job_e.png"
   },
@@ -15,7 +32,8 @@
       ],
       "js": [
         "script/taskView.js",
-        "script/util.js"
+        "script/util.js",
+        "script/ai.js"
       ],
       "type": "module"
     },
@@ -35,7 +53,8 @@
         "https://*.backlog.com/find/*"
       ],
       "js": [
-        "script/find.js"
+        "script/find.js",
+        "script/ai_find.js"
       ],
       "type": "module"
     },
