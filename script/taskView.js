@@ -1,4 +1,4 @@
-function taskViewFuction() {
+function taskViewFunction() {
 
     const svg = "http://www.w3.org/2000/svg";
     let dialog = document.getElementById("categoryTaskDialog");
@@ -106,7 +106,7 @@ function taskViewFuction() {
                 checkboxinput.type = 'checkbox';
                 checkboxinput.id = 'taskCloseCheck';
                 checkboxinput.addEventListener('change', function () {
-                    taskViewFuction();
+                    taskViewFunction();
                 });
                 checkbox.appendChild(checkboxinput);
                 let checkboxSpan = document.createElement('span');

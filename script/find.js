@@ -29,7 +29,7 @@ if (url.indexOf('backlog.jp/find/') != -1 || url.indexOf('backlog.com/find/') !=
             taskViewButtonElement.appendChild(taskViewButtonTextElement);
 
             taskViewButtonElement.addEventListener("click", function () {
-                taskViewFuction();
+                taskViewFunction();
             });
             resultsSetControllerAction.appendChild(taskViewButtonElement);
             resultsSetControllerAction.appendChild(categoryTaskDialog);
