@@ -33,6 +33,6 @@ function getSummaryTextFromScreen() {
  * @returns {string} 固定の文字が追加されたプロンプト文字列。
  */
 function addPrefixToPrompt(prompt) {
-    const prefix = "以下の情報に基づいて、タスクを要約してください: 出力する文章はHTMLとし改行は<br/>を使用してください。";
+    const prefix = "以下の情報に基づいて、タスクを要約してください: 出力する文章はHTMLタグは使わないでください。";
     return prefix + prompt;
 }

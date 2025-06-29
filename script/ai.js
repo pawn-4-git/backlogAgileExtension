@@ -24,7 +24,7 @@ function handleAiCommentButtonClick() {
                     document.body.appendChild(bubble);
 
                     const summary = await summarizeIssueList(); // awaitを追加
-                    bubble.innerHTML = summary;
+                    bubble.textContent = summary;
 
                     // Add event listener to close bubble when clicking outside
                     document.addEventListener("click", function docClickListener(e) {
