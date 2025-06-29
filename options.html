@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>キャッシュ設定</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e0e0e0;
+        }
+
+        #status {
+            margin-top: 10px;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>設定</h1>
+
+    <p style="margin-top: 30px;">1. AIサービスを選択</p>
+    <label for="aiSelect">AI:</label><br />
+    <select id="aiSelect" style="width: 320px; padding: 4px;">
+        <option value="chatgpt">chatgpt</option>
+        <option value="gemini">gemini</option>
+    </select><br />
+    <button id="saveAi">AIを保存</button>
+    <button id="deleteAi">AIを削除</button>
+    <div id="currentAi" style="margin-top: 10px; font-weight: bold;"></div>
+
+    <div id="chatgptSettings" style="margin-top: 20px;">
+        <p>OpenAI APIキーを設定</p>
+        <label for="apiKeyInput">APIキー:</label><br />
+        <input type="password" id="apiKeyInput" style="width: 300px;" placeholder="APIキーを入力してください" /><br />
+        <button id="saveApiKey">保存</button>
+        <button id="deleteApiKey">削除</button>
+        <div id="currentKey" style="margin-top: 10px; font-weight: bold;"></div>
+
+        <p style="margin-top: 20px;">LLMモデルを選択</p>
+        <label for="modelSelect">モデル:</label><br />
+        <select id="modelSelect" style="width: 320px; padding: 4px;">
+            <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+            <option value="gpt-4">gpt-4</option>
+            <option value="gpt-4-32k">gpt-4-32k</option>
+        </select><br />
+        <button id="saveModel">モデルを保存</button>
+        <button id="deleteModel">モデルを削除</button>
+        <div id="currentModel" style="margin-top: 10px; font-weight: bold;"></div>
+    </div>
+
+    <div id="geminiSettings" style="margin-top: 20px; display:none;">
+        <p>Gemini用APIキーを設定</p>
+        <label for="geminiApiKeyInput">APIキー:</label><br />
+        <input type="password" id="geminiApiKeyInput" style="width: 300px;" placeholder="Gemini用APIキーを入力してください" /><br />
+        <button id="saveGeminiApiKey">保存</button>
+        <button id="deleteGeminiApiKey">削除</button>
+        <div id="currentGeminiKey" style="margin-top: 10px; font-weight: bold;"></div>
+
+        <p style="margin-top: 20px;">Gemini用LLMモデルを選択</p>
+        <label for="geminiModelSelect">モデル:</label><br />
+        <select id="geminiModelSelect" style="width: 320px; padding: 4px;">
+            <option value="gemini-2.5-flash-preview-05-20">gemini-2.5-flash-preview-05-20</option>
+            <option value="gemini-2.5-pro-preview-05-06">gemini-2.5-pro-preview-05-06</option>
+        </select><br />
+        <button id="saveGeminiModel">モデルを保存</button>
+        <button id="deleteGeminiModel">モデルを削除</button>
+        <div id="currentGeminiModel" style="margin-top: 10px; font-weight: bold;"></div>
+    </div>
+
+    <p style="margin-top: 30px;">2. タスク状況確認の内容を要約するプロンプト</p>
+    <textarea id="summaryPrompt" rows="5" style="width: 320px;" placeholder="要約プロンプトを入力してください"></textarea><br />
+    <button id="savePrompt" style="border-radius: 8px;">保存</button>
+    <button id="deletePrompt" style="border-radius: 8px;">削除</button>
+    <div id="currentPrompt" style="margin-top: 10px; font-weight: bold; white-space: pre-wrap;"></div>
+
+    <p style="margin-top: 30px;">3. 課題一覧画面で要約するプロンプト</p>
+    <textarea id="taskListSummaryPrompt" rows="5" style="width: 320px;"
+        placeholder="課題一覧画面用の要約プロンプトを入力してください"></textarea><br />
+    <button id="saveTaskListPrompt" style="border-radius: 8px;">保存</button>
+    <button id="deleteTaskListPrompt" style="border-radius: 8px;">削除</button>
+    <div id="currentTaskListPrompt" style="margin-top: 10px; font-weight: bold; white-space: pre-wrap;"></div>
+
+    <div id="status"></div>
+
+    <script src="script/options.js"></script>
+</body>
+
+</html>

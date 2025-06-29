@@ -172,7 +172,6 @@ function taskViewFunction() {
                     ajustW = 0;
 
                 }
-                console.log(getTitle(list[i]));
             }
             const animate = document.createElementNS(svg, "animate");
             animate.setAttribute("attributeName", "r");
