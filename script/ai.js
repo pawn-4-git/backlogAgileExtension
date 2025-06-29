@@ -24,7 +24,7 @@ function handleAiCommentButtonClick() {
                     document.body.appendChild(bubble);
 
                     const summary = await summarizeIssueList(); // awaitを追加
-                    bubble.textContent = summary;
+                    bubble.innerHTML = summary;
 
                     // Add event listener to close bubble when clicking outside
                     document.addEventListener("click", function docClickListener(e) {
@@ -84,6 +84,8 @@ async function summarizeIssueList() {
         return "エラー: 課題一覧画面用要約プロンプトが設定されていません。";
     }
 
+    convertTaskListSummaryPrompt = addPrefixToPrompt(taskListSummaryPrompt);
+
     let apiKey;
     let model;
     let apiUrl;
@@ -100,7 +102,7 @@ async function summarizeIssueList() {
         };
         body = JSON.stringify({
             model: model,
-            messages: [{ role: "user", content: `${taskListSummaryPrompt}\n\n${screenText}` }],
+            messages: [{ role: "user", content: `${convertTaskListSummaryPrompt}\n\n${screenText}` }],
             temperature: 0.7
         });
     } else if (aiType === 'gemini') {
@@ -111,7 +113,7 @@ async function summarizeIssueList() {
             'Content-Type': 'application/json'
         };
         body = JSON.stringify({
-            contents: [{ parts: [{ text: `${taskListSummaryPrompt}\n\n${screenText}` }] }]
+            contents: [{ parts: [{ text: `${convertTaskListSummaryPrompt}\n\n${screenText}` }] }]
         });
     } else {
         return "エラー: 未知のAIタイプが設定されています。";
